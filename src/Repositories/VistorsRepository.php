@@ -2,7 +2,7 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Interfaces\BaseRepository;
+use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Vistors;
 
 /**

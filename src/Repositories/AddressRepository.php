@@ -3,7 +3,6 @@
 namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Repositories\BaseRepository;
-use Referenzverwaltung\Interfaces\AddressRepositoryInterface;
 use Referenzverwaltung\Models\Address;
 
 /**

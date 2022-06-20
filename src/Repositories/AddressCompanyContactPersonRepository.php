@@ -2,8 +2,8 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Interfaces\AddressCompanyContactPerson;
-use Referenzverwaltung\Models\BaseRepository;
+use Referenzverwaltung\Repositories\BaseRepository;
+use Referenzverwaltung\Models\AddressCompanyContactPerson;
 
 /**
  * Class AddressCompanyContactPersonRepository
