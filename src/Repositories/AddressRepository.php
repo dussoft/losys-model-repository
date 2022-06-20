@@ -1,9 +1,9 @@
 <?php
 
-namespace Referenzverwaltung\ModelPhoto\Repositories;
+namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Repositories\BaseRepository;
-use Referenzverwaltung\Interfaces\AddressCompanyContactPersonRepositoryInterface;
+use Referenzverwaltung\Interfaces\AddressRepositoryInterface;
 use Referenzverwaltung\Models\Address;
 
 /**
@@ -12,7 +12,7 @@ use Referenzverwaltung\Models\Address;
  * @version December 19, 2020, 4:50 pm UTC
 */
 
-class AddressRepository extends BaseRepository implements AddressCompanyContactPersonRepositoryInterface
+class AddressRepository extends BaseRepository implements AddressRepositoryInterface
 {
     /**
      * @var array
