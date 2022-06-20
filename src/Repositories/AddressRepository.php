@@ -9,26 +9,26 @@ class AddressRepository implements AddressRepositoryInterface
 {
     public function getAll() 
     {
-        return Photo::all();
+        return Address::all();
     }
 
     public function getById(int $id) 
     {
-        return Photo::findOrFail($id);
+        return Address::findOrFail($id);
     }
 
     public function delete(int $id) 
     {
-        Photo::destroy($photoId);
+        Address::destroy($id);
     }
 
     public function create(array $modal) 
     {
-        return Photo::create($modal);
+        return Address::create($modal);
     }
 
     public function update(int $id, array $newModal) 
     {
-        return Photo::whereId($id)->update($newModal);
+        return Address::whereId($id)->update($newModal);
     }
 }
