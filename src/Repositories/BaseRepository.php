@@ -1,6 +1,6 @@
 <?php
 
-namespace Referenzverwaltung\ModelPhoto\Repositories;
+namespace Referenzverwaltung\Repositories;
 
 use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Model;
