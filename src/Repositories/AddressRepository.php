@@ -2,47 +2,33 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Address;
+use Referenzverwaltung\Interfaces\AddressRepositoryInterface;
 
-/**
- * Class AddressRepository
- * @package App\Repositories
- * @version December 19, 2020, 4:50 pm UTC
-*/
-
-class AddressRepository extends BaseRepository
+class AddressRepository implements AddressRepositoryInterface
 {
-    /**
-     * @var array
-     */
-    protected $fieldSearchable = [
-        'status',
-        'name',
-        'alternativeName',
-        'mailBox',
-        'address',
-        'zipcode',
-        'city',
-        'country',
-        'companyId'
-    ];
-
-    /**
-     * Return searchable fields
-     *
-     * @return array
-     */
-    public function getFieldsSearchable()
+    public function getAll() 
     {
-        return $this->fieldSearchable;
+        return Photo::all();
     }
 
-    /**
-     * Configure the Model
-     **/
-    public function model()
+    public function getById(int $id) 
     {
-        return Address::class;
+        return Photo::findOrFail($id);
+    }
+
+    public function delete(int $id) 
+    {
+        Photo::destroy($photoId);
+    }
+
+    public function create(array $modal) 
+    {
+        return Photo::create($modal);
+    }
+
+    public function update(int $id, array $newModal) 
+    {
+        return Photo::whereId($id)->update($newModal);
     }
 }
