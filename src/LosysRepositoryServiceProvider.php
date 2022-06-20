@@ -4,7 +4,7 @@ namespace Referenzverwaltung;
 
 use Illuminate\Support\ServiceProvider;
 //use Referenzverwaltung\Interfaces\AddressCompanyContactPersonRepositoryInterface;
-use Referenzverwaltung\Interfaces\AddressRepositoryInterface;
+//use Referenzverwaltung\Interfaces\AddressRepositoryInterface;
 /*use Referenzverwaltung\Interfaces\CantonRepositoryInterface;
 use Referenzverwaltung\Interfaces\CategoryLanguageRepositoryInterface;
 use Referenzverwaltung\Interfaces\CategoryRepositoryInterface;
@@ -113,7 +113,7 @@ class LosysRepositoryServiceProvider extends ServiceProvider
     public function boot()
     {
         //$this->app->bind(AddressCompanyContactPersonRepositoryInterface::class, AddressCompanyContactPersonRepository::class);
-        $this->app->bind(AddressRepositoryInterface::class, AddressRepository::class);
+        $this->app->bind(AddressRepository::class);
         /*$this->app->bind(CantonRepositoryInterface::class, CantonRepository::class);
         $this->app->bind(CategoryLanguageRepositoryInterface::class, CategoryLanguageRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);

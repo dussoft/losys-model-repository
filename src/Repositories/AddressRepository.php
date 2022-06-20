@@ -12,7 +12,7 @@ use Referenzverwaltung\Models\Address;
  * @version December 19, 2020, 4:50 pm UTC
 */
 
-class AddressRepository extends BaseRepository implements AddressRepositoryInterface
+class AddressRepository extends BaseRepository
 {
     /**
      * @var array
