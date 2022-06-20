@@ -1,0 +1,27 @@
+{
+    "name": "referenzverwaltung/repositories",
+    "description": "losys.repositories",
+    "type": "library",
+    "version": "1.0.1",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Referenzverwaltung\\LosysRepositoryServiceProvider"
+            ]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Referenzverwaltung\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Dussoft",
+            "email": "info@dussoft.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4.0"
+    }
+}
