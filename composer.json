@@ -2,7 +2,7 @@
     "name": "referenzverwaltung/repositories",
     "description": "losys.repositories",
     "type": "library",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "extra": {
         "laravel": {
             "providers": [
