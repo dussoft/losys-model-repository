@@ -3,9 +3,9 @@
 namespace Referenzverwaltung;
 
 use Illuminate\Support\ServiceProvider;
-use Referenzverwaltung\Interfaces\AddressCompanyContactPersonRepositoryInterface;
+//use Referenzverwaltung\Interfaces\AddressCompanyContactPersonRepositoryInterface;
 use Referenzverwaltung\Interfaces\AddressRepositoryInterface;
-use Referenzverwaltung\Interfaces\CantonRepositoryInterface;
+/*use Referenzverwaltung\Interfaces\CantonRepositoryInterface;
 use Referenzverwaltung\Interfaces\CategoryLanguageRepositoryInterface;
 use Referenzverwaltung\Interfaces\CategoryRepositoryInterface;
 use Referenzverwaltung\Interfaces\CompanyContactPersonRepositoryInterface;
@@ -47,9 +47,9 @@ use Referenzverwaltung\Interfaces\TypeOfWorkLanguageRepositoryInterface;
 use Referenzverwaltung\Interfaces\TypeOfWorkRepositoryInterface;
 use Referenzverwaltung\Interfaces\VisitorsRepositoryInterface;
 
-use Referenzverwaltung\Repositories\AddressCompanyContactPersonRepository;
+use Referenzverwaltung\Repositories\AddressCompanyContactPersonRepository;*/
 use Referenzverwaltung\Repositories\AddressRepository;
-use Referenzverwaltung\Repositories\CantonRepository;
+/*use Referenzverwaltung\Repositories\CantonRepository;
 use Referenzverwaltung\Repositories\CategoryLanguageRepository;
 use Referenzverwaltung\Repositories\CategoryRepository;
 use Referenzverwaltung\Repositories\CompanyContactPersonRepository;
@@ -89,7 +89,7 @@ use Referenzverwaltung\Repositories\TypeOfConstructionLanguageRepository;
 use Referenzverwaltung\Repositories\TypeOfConstructionRepository;
 use Referenzverwaltung\Repositories\TypeOfWorkLanguageRepository;
 use Referenzverwaltung\Repositories\TypeOfWorkRepository;
-use Referenzverwaltung\Repositories\VisitorsRepository;
+use Referenzverwaltung\Repositories\VisitorsRepository;*/
 
 
 
