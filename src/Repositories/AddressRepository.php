@@ -1,6 +1,6 @@
 <?php
 
-namespace Referenzverwaltung\ModelPhoto\Repositories;
+namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Address;

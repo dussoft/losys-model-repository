@@ -1,6 +1,6 @@
 <?php
 
-namespace Referenzverwaltung\ModelPhoto\Repositories;
+namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Interfaces\BaseRepository;
 use Referenzverwaltung\Models\Language;
