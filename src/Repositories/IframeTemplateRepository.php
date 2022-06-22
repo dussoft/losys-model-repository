@@ -40,4 +40,9 @@ class IframeTemplateRepository extends BaseRepository
     {
         return IframeTemplate::class;
     }
+
+    public function getForCompany($companyId)
+    {
+        return IframeTemplate::where("companyId", $companyId)->get();
+    }
 }
