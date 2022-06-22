@@ -4,6 +4,9 @@ namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfWork;
+use Referenzverwaltung\Models\DefaultTypeOfWork;
+use Referenzverwaltung\Models\TypeOfWorkLanguage;
+use Referenzverwaltung\Models\DefaultTypeOfWorkLanguage;
 
 /**
  * Class TypeOfWorkRepository
@@ -36,5 +39,24 @@ class TypeOfWorkRepository extends BaseRepository
     public function model()
     {
         return TypeOfWork::class;
+    }
+
+    public function saveDefaultForCompany($companyId){
+        foreach (DefaultTypeOfWork::get() as $defaultTypeOfWork) {
+            $typeOfWork = new TypeOfWork(['companyId' => $companyId]);
+            $typeOfWork->save();
+            if ($typeOfWork) {
+                foreach (DefaultTypeOfWorkLanguage::where('typeOfWorkId', $defaultTypeOfWork->id)->get() as $defaultTypeOfWorkLang) {
+                    if ($defaultTypeOfWorkLang) {
+                        $typeOfWorkLang = new TypeOfWorkLanguage([
+                            'typeOfWorkId' => $typeOfWork->id,
+                            'languageId' => $defaultTypeOfWorkLang->languageId,
+                            'title' => $defaultTypeOfWorkLang->title
+                        ]);
+                        $typeOfWorkLang->save();
+                    }
+                }
+            }
+        }
     }
 }

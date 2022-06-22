@@ -6,6 +6,10 @@ use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Company;
 use Referenzverwaltung\Models\GroupCompany;
 use Referenzverwaltung\Models\CompanyService;
+use Referenzverwaltung\Models\DefaultTypeOfWork;
+use Referenzverwaltung\Models\DefaultTypeOfWorkLanguage;
+use Referenzverwaltung\Models\TypeOfWork;
+use Referenzverwaltung\Models\TypeOfWorkLanguage;
 
 /**
  * Class CompanyRepository

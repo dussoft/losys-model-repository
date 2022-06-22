@@ -4,6 +4,9 @@ namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfConstruction;
+use Referenzverwaltung\Models\DefaultTypeOfConstruction;
+use Referenzverwaltung\Models\TypeOfConstructionLanguage;
+use Referenzverwaltung\Models\DefaultTypeOfConstructionLanguage;
 
 /**
  * Class TypeOfConstructionRepository
@@ -36,5 +39,24 @@ class TypeOfConstructionRepository extends BaseRepository
     public function model()
     {
         return TypeOfConstruction::class;
+    }
+
+    public function saveDefaultForCompany($companyId){
+        foreach (DefaultTypeOfConstruction::get() as $defaultTypeOfConstruction) {
+            $typeOfConstruction = new TypeOfConstruction(['companyId' => $company->id]);
+            $typeOfConstruction->save();
+            if ($typeOfConstruction) {
+                foreach (DefaultTypeOfConstructionLanguage::where('typeOfConstrationId', $defaultTypeOfConstruction->id)->get() as $defaultTypeOfBuildingLang) {
+                    if ($defaultTypeOfBuildingLang) {
+                        $typeOfConstructionLang = new TypeOfConstructionLanguage([
+                            'typeOfConstrationId' => $typeOfConstruction->id,
+                            'languageId' => $defaultTypeOfBuildingLang->languageId,
+                            'title' => $defaultTypeOfBuildingLang->title
+                        ]);
+                        $typeOfConstructionLang->save();
+                    }
+                }
+            }
+        }
     }
 }
