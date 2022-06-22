@@ -39,4 +39,8 @@ class LanguageRepository extends BaseRepository
     {
         return Language::class;
     }
+
+    public function createorupdate($condion, $data){
+        return Language::updateOrCreate($condition, $data);
+    }
 }

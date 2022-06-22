@@ -39,4 +39,7 @@ class TypeOfConstructionLanguageRepository extends BaseRepository
     {
         return TypeOfConstructionLanguage::class;
     }
+    public function createorupdate($condion, $data){
+        return TypeOfConstructionLanguage::updateOrCreate($condition, $data);
+    }
 }

@@ -89,4 +89,8 @@ class CompanyRepository extends BaseRepository
         }
         return $companies;
     }
+
+    public function createorupdate($condion, $data){
+        return Company::updateOrCreate($condition, $data);
+    }
 }

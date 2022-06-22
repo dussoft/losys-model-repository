@@ -46,4 +46,12 @@ class CompanyEmployeeRepository extends BaseRepository
     {
         return CompanyEmployee::class;
     }
+
+    public function createorupdate($condion, $data){
+        return CompanyEmployee::updateOrCreate($condition, $data);
+    }
+
+    public function getByEmail($email){
+        return CompanyEmployee::where('email',$employee['email'])->first();
+    }
 }

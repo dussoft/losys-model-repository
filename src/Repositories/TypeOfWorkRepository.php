@@ -59,4 +59,12 @@ class TypeOfWorkRepository extends BaseRepository
             }
         }
     }
+
+    public function getByCompanyAndRefoId($companyId, $refoId){
+        return TypeOfWork::where('companyId', $companyId)->where('refo_type_of_work_id', $refoId)->first();
+    }
+
+    public function createorupdate($condion, $data){
+        return TypeOfWork::updateOrCreate($condition, $data);
+    }
 }

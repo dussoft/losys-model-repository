@@ -49,4 +49,8 @@ class AddressCompanyContactPersonRepository extends BaseRepository
     {
         return AddressCompanyContactPerson::class;
     }
+
+    public function createorupdate($condion, $data){
+        return AddressCompanyContactPerson::updateOrCreate($condition, $data);
+    }
 }

@@ -45,4 +45,12 @@ class AddressRepository extends BaseRepository
     {
         return Address::class;
     }
+
+    public function getByCompanyAndRefoId($companyId, $refoId){
+        return Address::where('companyId', $companyId)->where('refo_address_id', $refoId)->first();
+    }
+
+    public function createorupdate($condion, $data){
+        return Address::updateOrCreate($condition, $data);
+    }
 }

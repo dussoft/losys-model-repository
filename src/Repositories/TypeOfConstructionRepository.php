@@ -59,4 +59,12 @@ class TypeOfConstructionRepository extends BaseRepository
             }
         }
     }
+
+    public function getByCompanyAndRefoId($companyId, $refoId){
+        return TypeOfConstruction::where('companyId', $companyId)->where('refo_type_of_construction_id', $refoId)->first();
+    }
+
+    public function createorupdate($condion, $data){
+        return TypeOfConstruction::updateOrCreate($condition, $data);
+    }
 }

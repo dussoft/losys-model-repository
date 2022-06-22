@@ -44,4 +44,18 @@ class ProjectRepository extends BaseRepository
     {
         return Project::class;
     }
+
+    public function autoImport($url){
+        $donwloadedContent=Project::downloadProjectByUrl($url);
+        if(array_key_exists('company', $donwloadedContent)){
+            $refo_company= $donwloadedContent['company'];
+            if(array_key_exists('refo_company_id', $refo_company)){
+                $company=Company::where('refo_company_id',$refo_company['refo_company_id'])->first();
+                if($company){
+                    app(MigrateOldDataController::class)->migrateCompanies($donwloadedContent, $company, false);
+                    return response()->json(['success' => true]);
+                }
+            }
+        }
+    }
 }
