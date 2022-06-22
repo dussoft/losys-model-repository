@@ -53,7 +53,7 @@ class CompanyRepository extends BaseRepository
         $groupCompanyIds = [];
         $serviceCompanyIds = [];
         $query =  Company::orderBy('id', 'DESC');
-        if ($request->groups && count($request->groups) > 0) {
+        if (isset($request->groups) && count($request->groups) > 0) {
             foreach (GroupCompany::whereIn('groupId', $request->groups)->get() as $groupCompany) {
                 array_push($groupCompanyIds, $groupCompany->companyId);
             }
@@ -62,7 +62,7 @@ class CompanyRepository extends BaseRepository
                 $query = $query->whereIn('id', $groupCompanyIds);
             }
         }
-        if ($request->services && count($request->services) > 0) {
+        if (isset($request->services) && count($request->services) > 0) {
             foreach (CompanyService::whereIn('serviceId', $request->services)->get() as $companyService) {
                 array_push($serviceCompanyIds, $companyService->companyId);
             }
@@ -71,14 +71,14 @@ class CompanyRepository extends BaseRepository
                 $query = $query->whereIn('id', $serviceCompanyIds);
             }
         }
-        if ($request->companyIds && count($request->companyIds) > 0) {
+        if (isset($request->companyIds) && count($request->companyIds) > 0) {
             $query = $query->whereIn('id', $request->companyIds);
         }
-        if ($request->text-search) {
-            $search = $request->get('text-search');
+        if (isset($request->text_search)) {
+            $search = $request->text_search;
             $query =  $query->where('name', 'LIKE', "%{$search}%");
         }
-        if ($request->isSearch) {
+        if (isset($request->isSearch)) {
             $companies =  $query->orderBy('id', 'DESC')->get();
         } else {
             $companies =  $query->orderBy('id', 'DESC')->paginate(999);
