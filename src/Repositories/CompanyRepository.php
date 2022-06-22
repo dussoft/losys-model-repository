@@ -52,7 +52,7 @@ class CompanyRepository extends BaseRepository
     {
         $groupCompanyIds = [];
         $serviceCompanyIds = [];
-        $query =  Company::newQuery()->orderBy('id', 'DESC');
+        $query =  Company::orderBy('id', 'DESC');
         if ($request->groups && count($request->groups) > 0) {
             foreach (GroupCompany::whereIn('groupId', $request->groups)->get() as $groupCompany) {
                 array_push($groupCompanyIds, $groupCompany->companyId);
