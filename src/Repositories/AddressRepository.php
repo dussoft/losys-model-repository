@@ -50,7 +50,7 @@ class AddressRepository extends BaseRepository
         return Address::where('companyId', $companyId)->where('refo_address_id', $refoId)->first();
     }
 
-    public function createorupdate($condion, $data){
+    public function createorupdate($condition, $data){
         return Address::updateOrCreate($condition, $data);
     }
 }

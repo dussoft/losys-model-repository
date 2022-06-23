@@ -38,7 +38,7 @@ class MigrateOldDataRepository extends BaseRepository
         return MigrateOldData::class;
     }
 
-    public function createorupdate($main, $second){
-        return MigrateOldData::updateOrCreate($main, $second);
+    public function createorupdate($condition, $second){
+        return MigrateOldData::updateOrCreate($condition, $second);
     }
 }

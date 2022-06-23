@@ -38,4 +38,8 @@ class ProjectTypeOfContructionRepository extends BaseRepository
     {
         return ProjectTypeOfContruction::class;
     }
+
+    public function migrateProjectTypeOfConstruction($data){
+        return ProjectTypeOfBuilding::migrateProjectTypeOfConstruction($data);
+    }
 }

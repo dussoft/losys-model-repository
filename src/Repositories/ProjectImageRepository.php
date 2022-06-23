@@ -39,4 +39,8 @@ class ProjectImageRepository extends BaseRepository
     {
         return ProjectImage::class;
     }
+
+    public function migrateProjectImage($company,$projectImage){
+        return ProjectImage::migrateProjectImage($company,$projectImage);
+    }
 }

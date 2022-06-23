@@ -40,7 +40,7 @@ class TypeOfWorkLanguageRepository extends BaseRepository
         return TypeOfWorkLanguage::class;
     }
 
-    public function createorupdate($condion, $data){
+    public function createorupdate($condition, $data){
         return TypeOfWorkLanguage::updateOrCreate($condition, $data);
     }
 }

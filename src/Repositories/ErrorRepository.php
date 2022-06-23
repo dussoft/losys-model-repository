@@ -3,22 +3,16 @@
 namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Repositories\BaseRepository;
-use Referenzverwaltung\Models\ProjectTypeOfWork;
+use Referenzverwaltung\Models\Error;
 
-/**
- * Class ProjectTypeOfWorkRepository
- * @package App\Repositories
- * @version January 20, 2021, 1:37 pm UTC
-*/
-
-class ProjectTypeOfWorkRepository extends BaseRepository
+class ErrorRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'projectId',
-        'typeOfWorkId'
+        'error',
+        'description'
     ];
 
     /**
@@ -36,10 +30,12 @@ class ProjectTypeOfWorkRepository extends BaseRepository
      **/
     public function model()
     {
-        return ProjectTypeOfWork::class;
+        return Error::class;
     }
 
-    public function migrateProjectTypeOfWork($data){
-        return ProjectTypeOfBuilding::migrateProjectTypeOfWork($data);
+    public function clearall(){
+        foreach(Error::get() as $error){
+            $error->delete();
+        }
     }
 }

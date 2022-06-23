@@ -64,7 +64,7 @@ class TypeOfBuildingRepository extends BaseRepository
         return TypeOfBuilding::where('companyId', $companyId)->where('refo_type_of_building_id', $refoId)->first();
     }
 
-    public function createorupdate($condion, $data){
+    public function createorupdate($condition, $data){
         return TypeOfBuilding::updateOrCreate($condition, $data);
     }
 }

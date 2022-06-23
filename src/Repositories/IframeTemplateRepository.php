@@ -45,4 +45,12 @@ class IframeTemplateRepository extends BaseRepository
     {
         return IframeTemplate::where("companyId", $companyId)->get();
     }
+
+    public function getByCompanyAndLayout($companyId, $layout){
+        return IframeTemplate::where("companyId", $companyId)->where("layout", $layout)->first();
+    }
+
+    public function createorupdate($condition, $data){
+        return IframeTemplate::updateOrCreate($condition, $data);
+    }
 }

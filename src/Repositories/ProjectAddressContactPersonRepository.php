@@ -38,4 +38,8 @@ class ProjectAddressContactPersonRepository extends BaseRepository
     {
         return ProjectAddressContactPerson::class;
     }
+
+    public function migrateProjectAddressContactPerson($data){
+        return  ProjectAddressContactPerson::migrateProjectAddressContactPerson($data);
+    }
 }

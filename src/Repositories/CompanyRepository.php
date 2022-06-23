@@ -90,7 +90,7 @@ class CompanyRepository extends BaseRepository
         return $companies;
     }
 
-    public function createorupdate($condion, $data){
+    public function createorupdate($condition, $data){
         return Company::updateOrCreate($condition, $data);
     }
 }

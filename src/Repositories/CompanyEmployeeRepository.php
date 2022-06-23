@@ -47,7 +47,7 @@ class CompanyEmployeeRepository extends BaseRepository
         return CompanyEmployee::class;
     }
 
-    public function createorupdate($condion, $data){
+    public function createorupdate($condition, $data){
         return CompanyEmployee::updateOrCreate($condition, $data);
     }
 

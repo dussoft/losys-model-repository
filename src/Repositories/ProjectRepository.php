@@ -58,4 +58,8 @@ class ProjectRepository extends BaseRepository
             }
         }
     }
+
+    public function migrateProject($company, $project){
+        return Project::migrateProject($company, $project);
+    }
 }

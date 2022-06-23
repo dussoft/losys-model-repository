@@ -38,4 +38,8 @@ class ProjectParticipatingCompanyRepository extends BaseRepository
     {
         return ProjectParticipatingCompany::class;
     }
+
+    public function migrateProjectParticipatingCompany($company,$newProjectId, $project){
+        return ProjectParticipatingCompany::migrateProjectParticipatingCompany($company,$newProjectId, $project);
+    }
 }
