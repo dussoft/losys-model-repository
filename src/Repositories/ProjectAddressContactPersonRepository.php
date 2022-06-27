@@ -42,4 +42,8 @@ class ProjectAddressContactPersonRepository extends BaseRepository
     public function migrateProjectAddressContactPerson($data){
         return  ProjectAddressContactPerson::migrateProjectAddressContactPerson($data);
     }
+
+    public function getByProjectId($id){
+        return ProjectAddressContactPerson::where("projectId", $id)->get();
+    }
 }

@@ -41,4 +41,8 @@ class CantonRepository extends BaseRepository
     {
         return Canton::class;
     }
+
+    public function getByName($cantonname){
+        return Canton::where('de', $cantonname)->orwhere('en', $cantonname)->orwhere('fr', $cantonname)->orwhere('it', $cantonname)->first();
+    }
 }

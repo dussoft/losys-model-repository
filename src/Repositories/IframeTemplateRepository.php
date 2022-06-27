@@ -53,4 +53,8 @@ class IframeTemplateRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return IframeTemplate::updateOrCreate($condition, $data);
     }
+
+    public function getByCompany($companyId){
+        return IframeTemplate::where('companyId', $companyId)->get();
+    }
 }

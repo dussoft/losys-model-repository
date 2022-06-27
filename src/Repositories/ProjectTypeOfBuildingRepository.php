@@ -42,4 +42,16 @@ class ProjectTypeOfBuildingRepository extends BaseRepository
     public function migrateProjectTypeOfBuilding($data){
         return ProjectTypeOfBuilding::migrateProjectTypeOfBuilding($data);
     }
+
+    public function getByProjectId($projectId){
+        return ProjectTypeOfBuilding::where("projectId", $projectId)->get();
+    }
+
+    public function replicate($id, $cloneProjectId){
+        $projectTypeOfBuilding = ProjectTypeOfBuilding::where("id", $id)->first();
+        $cloneProjectTypeOfBuilding = $projectTypeOfBuilding->replicate();
+        $cloneProjectTypeOfBuilding->projectId = $cloneProjectId;
+        $cloneProjectTypeOfBuilding->save();
+        return $cloneProjectTypeOfBuilding;
+    }
 }

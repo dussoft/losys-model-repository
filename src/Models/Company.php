@@ -3,8 +3,6 @@
 namespace Referenzverwaltung\Models;
 
 use Eloquent as Model;
-use App\User;
-use \App\UserRole;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
@@ -107,59 +105,5 @@ class Company extends Model
     {
         return $this->belongsToMany(GroupCompany::class, 'groupId');
     }
-
-    public static function setActiveCompanyId($id){
-        return session(['activeCompany' => $id]);
-    }
-
-    public static function getActiveCompanyId():int{
-        return (int)session()->get('activeCompany');
-    }
-
-    public static function getUserCompany():int{
-        if(User::userHasCompany()){
-            return Auth::user()->company->id;
-        }
-        return 0;
-    }
-
-    public static function userCompany(){
-        
-        return self::getActiveCompanyId() > 0?Company::find(self::getActiveCompanyId()):null;
-    }
-    public static  function addOrUpdateActiveCompany(int $id = null):void
-    {
-        if(isset($id)){ 
-            if(UserRole::isAdmin() || UserRole::isSuperAdmin()){
-                self::setActiveCompanyId($id);  
-            }
-            else{
-                if(User::userHasCompany()){
-                    if(Auth::user()->company->id==$id){
-                        self::setActiveCompanyId($id);
-                    }
-                    else{
-                        $userRightToEdit=[];
-                        $groupId=\App\Models\GroupCompany::where('companyId',Auth::user()->company->id)->pluck('groupId');
-                        $companiesIds=\App\Models\GroupCompany::whereIn('groupId',$groupId)->pluck('companyId');
-                        $companies=\App\Models\Company::whereIn('id',$companiesIds)->get();
-                        foreach($companies as $company){
-                            $groupMember=\App\Models\GroupRight::where('memberId', Auth::user()->id)->where('companyId',$company->id)->first();
-                            if(isset($groupMember) && $groupMember->enable_print_edit){
-                                $userRightToEdit[]=$company->id;
-                            }
-                        }
-                        if(in_array($id, $userRightToEdit)){
-                            self::setActiveCompanyId($id);
-                        }
-                    }
-                }
-            }
-        }
-        else{
-            if(User::userHasCompany())
-                { self::setActiveCompanyId(Auth::user()->company?Auth::user()->company->id:0); }
-                
-        }
-    }
+    
 }

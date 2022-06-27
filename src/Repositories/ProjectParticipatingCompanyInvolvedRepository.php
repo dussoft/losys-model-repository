@@ -38,4 +38,16 @@ class ProjectParticipatingCompanyInvolvedRepository extends BaseRepository
     {
         return ProjectParticipatingCompanyInvolved::class;
     }
+
+    public function getByParticipatingCompanyId($id){
+        return ProjectParticipatingCompanyInvolved::where("participatingCompanyId", $id)->get();
+    }
+
+    public function replicate($id, $cloneParticCompId){
+        $cloneInvolvedCompany = $involved->replicate();
+        $cloneInvolvedCompany->participatingCompanyId = $cloneParticCompId;
+        $cloneInvolvedCompany->save();
+    }
+
+
 }

@@ -42,4 +42,12 @@ class ProjectParticipatingCompanyRepository extends BaseRepository
     public function migrateProjectParticipatingCompany($company,$newProjectId, $project){
         return ProjectParticipatingCompany::migrateProjectParticipatingCompany($company,$newProjectId, $project);
     }
+
+    public function replicate($id, $cloneProjectId){
+        $projectParticipatingCompany=ProjectParticipatingCompany::where("id",$id)->first();
+        $cloneProjectParticipatingCompany = $projectParticipatingCompany->replicate();
+        $cloneProjectParticipatingCompany->projectId = $cloneProjectId;
+        $cloneProjectParticipatingCompany->save();
+        return $cloneProjectParticipatingCompany;
+    }
 }

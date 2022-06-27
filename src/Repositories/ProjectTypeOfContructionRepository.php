@@ -40,6 +40,18 @@ class ProjectTypeOfContructionRepository extends BaseRepository
     }
 
     public function migrateProjectTypeOfConstruction($data){
-        return ProjectTypeOfBuilding::migrateProjectTypeOfConstruction($data);
+        return ProjectTypeOfContruction::migrateProjectTypeOfConstruction($data);
+    }
+
+    public function getByProjectId($projectId){
+        return ProjectTypeOfContruction::where("projectId", $projectId)->get();
+    }
+
+    public function replicate($id, $cloneProjectId){
+        $projectTypeOfContruction=ProjectTypeOfContruction::where("id", $id);
+        $cloneProjectTypeOfContruction = $projectTypeOfContruction->replicate();
+        $cloneProjectTypeOfContruction->projectId = $cloneProjectId;
+        $cloneProjectTypeOfContruction->save();
+        return $cloneProjectTypeOfContruction;
     }
 }

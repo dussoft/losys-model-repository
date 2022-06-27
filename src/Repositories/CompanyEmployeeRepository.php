@@ -54,4 +54,8 @@ class CompanyEmployeeRepository extends BaseRepository
     public function getByEmail($email){
         return CompanyEmployee::where('email',$employee['email'])->first();
     }
+
+    public function getByCompany($companyId){
+        return CompanyEmployee::where('companyId', $companyId)->orderBy('lastName', 'asc')->orderBy('firstName', 'asc')->get();
+    }
 }

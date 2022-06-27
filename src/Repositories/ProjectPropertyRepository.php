@@ -42,4 +42,15 @@ class ProjectPropertyRepository extends BaseRepository
     {
         return ProjectProperty::class;
     }
+
+    public function getByProjectId($id){
+        return ProjectProperty::where("projectId", $id)->get();
+    }
+
+    public function replicate($id, $cloneProjectId){
+        $projectProperty=ProjectProperty::where("id", $id)->first();
+        $cloneProjectProperty = $projectProperty->replicate();
+        $cloneProjectProperty->projectId = $cloneProjectId;
+        $cloneProjectProperty->save();
+    }
 }

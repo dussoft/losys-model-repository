@@ -43,4 +43,32 @@ class ProjectImageRepository extends BaseRepository
     public function migrateProjectImage($company,$projectImage){
         return ProjectImage::migrateProjectImage($company,$projectImage);
     }
+
+    public function getMainForProject($projectId){
+        return ProjectImage::where('projectId',$projectId)->where('isMainImage',1)->orderBy('id','asc')->first();
+    }
+
+    public function getByProjectId($projectId){
+        return ProjectImage::where('projectId',$projectId)->get();
+    }
+
+    public function getProjectImagesWithLosysRights($project, $refoCompanyId){
+        ProjectImage::where('projectId',$project->id)->where(
+            function($query) use ($refoCompanyId) {
+                $query->where('imageRights','losys')
+                    ->where('imageSource','losys.fotos-')
+                    ->orWhere('imageSource','like',$refoCompanyId.'-%')
+                    ->orWhere('imageRights',null);
+            }
+        )->get();
+    }
+
+    public function replicate($id, $cloneProjectId){
+        $projectImage=ProjectImage::where("id", $id)->first();
+        $cloneProjectImage = $projectImage->replicate();
+        $cloneProjectImage->projectId = $cloneProjectId;
+        $cloneProjectImage->save();
+        return $cloneProjectImage;
+    }
 }
+

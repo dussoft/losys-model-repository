@@ -93,4 +93,8 @@ class CompanyRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return Company::updateOrCreate($condition, $data);
     }
+
+    public function getByRefoId($refoId){
+        return Company::where('refo_company_id',$refoId)->first();
+    }
 }

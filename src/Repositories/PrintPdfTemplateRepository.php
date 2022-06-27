@@ -41,4 +41,12 @@ class PrintPdfTemplateRepository extends BaseRepository
     {
         return PrintPdfTemplate::class;
     }
+
+    public function getByCompanyandType($companyId, $type, $default){
+        return PrintPdfTemplate::where('companyId', $companyId)
+        ->where('type',$type)
+        ->where('isDefault',$default)->first();
+    }
+
+    
 }

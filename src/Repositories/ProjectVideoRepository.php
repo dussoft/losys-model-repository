@@ -39,4 +39,16 @@ class ProjectVideoRepository extends BaseRepository
     {
         return ProjectVideo::class;
     }
+
+    public function getByProjectId($projectId){
+        return ProjectVideo::where('projectId',$projectId)->get();
+    }
+
+    public function replicate($id, $cloneProjectId){
+        $projectVideo=ProjectVideo::where("id", $id)->first();
+        $cloneProjectVideo = $projectVideo->replicate();
+        $cloneProjectVideo->projectId = $cloneProjectId;
+        $cloneProjectVideo->save();
+    }
+
 }
