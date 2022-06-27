@@ -40,35 +40,65 @@ class ProjectImageRepository extends BaseRepository
         return ProjectImage::class;
     }
 
-    public function migrateProjectImage($company,$projectImage){
-        return ProjectImage::migrateProjectImage($company,$projectImage);
+    public function getByImgUrl($url){
+        return ProjectImage::where('imageUrl', $url)->first();
     }
 
-    public function getMainForProject($projectId){
-        return ProjectImage::where('projectId',$projectId)->where('isMainImage',1)->orderBy('id','asc')->first();
+    public function updateOrCreate($cond, $data){
+        return ProjectImage::updateOrCreate($cond, $data);
     }
 
-    public function getByProjectId($projectId){
-        return ProjectImage::where('projectId',$projectId)->get();
+    public function getByProjectId($projectId, $isMain){
+        return ProjectImage::where('projectId',$request->get('projectId'))
+        ->where('isMainImage',$isMain)
+        ->orderBy('id','ASC')->get();
     }
 
-    public function getProjectImagesWithLosysRights($project, $refoCompanyId){
-        ProjectImage::where('projectId',$project->id)->where(
-            function($query) use ($refoCompanyId) {
-                $query->where('imageRights','losys')
-                    ->where('imageSource','losys.fotos-')
-                    ->orWhere('imageSource','like',$refoCompanyId.'-%')
-                    ->orWhere('imageRights',null);
-            }
-        )->get();
+    public function getMaxByIdInf($id, $projectId){
+        return ProjectImage::where('id', '<', $id)->where('projectId',$projectId)->max('id');
+    }
+    public function getMinByIdInf($id, $projectId){
+        return ProjectImage::where('id', '<', $id)->where('projectId',$projectId)->min('id');
     }
 
-    public function replicate($id, $cloneProjectId){
-        $projectImage=ProjectImage::where("id", $id)->first();
-        $cloneProjectImage = $projectImage->replicate();
-        $cloneProjectImage->projectId = $cloneProjectId;
-        $cloneProjectImage->save();
-        return $cloneProjectImage;
+    public function getMaxByIdSup($id, $projectId){
+        return ProjectImage::where('id', '>', $id)->where('projectId',$projectId)->max('id');
+    }
+    
+    public function getMinByIdSup($id, $projectId){
+        return ProjectImage::where('id', '>', $id)->where('projectId',$projectId)->min('id');
+    }
+
+    public function getMaxSupMain($id, $projectId){
+        return ProjectImage::where('id', '<', $id)->where('projectId',$projectId)->where('isMainImage', 1)->max('id');
+    }
+
+    public function getMaxSupNotMain($id, $projectId){
+        return ProjectImage::where('id', '<', $id)->where('projectId',$projectId)->where('isMainImage', 0)->max('id');
+    }
+
+    public function getMaxInfMain($id, $projectId){
+        return ProjectImage::where('id', '>', $id)->where('projectId',$projectId)->where('isMainImage', 1)->max('id');
+    }
+
+    public function getMaxInfNotMain($id, $projectId){
+        return ProjectImage::where('id', '>', $id)->where('projectId',$projectId)->where('isMainImage', 0)->max('id');
+    }
+
+    public function getMinSupMain($id, $projectId){
+        return ProjectImage::where('id', '<', $id)->where('projectId',$projectId)->where('isMainImage', 1)->min('id');
+    }
+
+    public function getMinSupNotMain($id, $projectId){
+        return ProjectImage::where('id', '<', $id)->where('projectId',$projectId)->where('isMainImage', 0)->min('id');
+    }
+
+    public function getMinInfMain($id, $projectId){
+        return ProjectImage::where('id', '>', $id)->where('projectId',$projectId)->where('isMainImage', 1)->min('id');
+    }
+
+    public function getMinInfNotMain($id, $projectId){
+        return ProjectImage::where('id', '>', $id)->where('projectId',$projectId)->where('isMainImage', 0)->min('id');
     }
 }
 

@@ -610,4 +610,8 @@ class ProjectRepository extends BaseRepository
         return Project::whereNotNull('languageId')->get();
     }
 
+    public function getByCompanyAndRefo($companyId, $refoId){
+        Project::where('companyId',$companyId)->where('refo_project_id', $refoId)->first();
+    }
+
 }
