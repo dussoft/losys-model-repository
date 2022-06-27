@@ -43,6 +43,10 @@ class ProjectParticipatingCompanyInvolvedRepository extends BaseRepository
         return ProjectParticipatingCompanyInvolved::where("participatingCompanyId", $id)->get();
     }
 
+    public function getTypeOfWorkIdByParticipatingCompanyId($id){
+        return ProjectParticipatingCompanyInvolved::where("participatingCompanyId", $id)->pluck('typeOfWorkId');
+    }
+
     public function replicate($id, $cloneParticCompId){
         $cloneInvolvedCompany = $involved->replicate();
         $cloneInvolvedCompany->participatingCompanyId = $cloneParticCompId;

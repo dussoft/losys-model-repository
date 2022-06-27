@@ -51,6 +51,6 @@ class TypeOfBuilding extends Model
      **/
     public function companyid()
     {
-        return $this->belongsTo(\App\Models\Company::class, 'companyId', 'companyId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'companyId', 'companyId');
     }
 }

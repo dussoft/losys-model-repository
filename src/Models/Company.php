@@ -103,7 +103,7 @@ class Company extends Model
      **/
     public function groups()
     {
-        return $this->belongsToMany(GroupCompany::class, 'groupId');
+        return $this->belongsToMany(\Referenzverwaltung\Models\GroupCompany::class, 'groupId');
     }
-    
+
 }

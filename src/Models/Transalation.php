@@ -54,6 +54,6 @@ class Transalation extends Model
      **/
     public function languages()
     {
-        return $this->hasMany(\App\Models\Language::class, 'languageId', 'languageId');
+        return $this->hasMany(\Referenzverwaltung\Models\Language::class, 'languageId', 'languageId');
     }
 }

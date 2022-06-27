@@ -67,4 +67,14 @@ class TypeOfWorkRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return TypeOfWork::updateOrCreate($condition, $data);
     }
+
+    public function participatingCompanyWorkList($projectParticipatingCompanyTypeOfWorkId, $companyId, $lang){
+        $typeOfWorks  = TypeOfWork::join('type_of_work_langauages', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
+        ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
+        ->where('type_of_works.companyId', $companyId)
+        ->where('languages.shortName', $lang)
+        ->whereNotIn('type_of_works.id',$projectParticipatingCompanyTypeOfWorkId)
+        ->orderBy('type_of_work_langauages.title')
+            ->get(['type_of_works.*']);
+    }
 }

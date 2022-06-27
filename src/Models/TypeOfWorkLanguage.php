@@ -69,14 +69,14 @@ class TypeOfWorkLanguage extends Model
         return $this->belongsTo(\App\Models\TypeOfWork::class, 'typeOfWorkId', 'typeOfWorkId');
     }
 
-    public static function translate($typeOfWorkId)
+    public static function translate($typeOfWorkId, $lang=en)
     {
        
         $typeOfWorkLang = DB::table('type_of_work_langauages')
             ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
             ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
             ->where('type_of_work_langauages.typeOfWorkId', '=', $typeOfWorkId)
-            ->where('languages.shortName', app()->getLocale())
+            ->where('languages.shortName', $lang)
             ->orderBy('type_of_work_langauages.title','DESC')
             ->orderBy('languages.isDefault', 'DESC')
             ->first();
@@ -97,30 +97,25 @@ class TypeOfWorkLanguage extends Model
         return $typeOfWorkLang ;
     }
 
-    public static function search($text)
+    public static function search($text, $lang="en", $companyId=0)
     {
-       
         $typeOfWorkLang = DB::table('type_of_work_langauages')
             ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
             ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
-            ->where('type_of_works.companyId', '=', Company::getActiveCompanyId())
+            ->where('type_of_works.companyId', '=', $companyId)
             ->where('type_of_work_langauages.title', 'Like',  "%{$text}%")
-            ->where('languages.shortName', app()->getLocale())
+            ->where('languages.shortName', $lang)
             ->orderBy('type_of_work_langauages.title','DESC')
             ->get();
-
         if(!$typeOfWorkLang){
-
             $typeOfWorkLang = DB::table('type_of_work_langauages')
             ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
             ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
-            ->where('type_of_works.companyId', '=', Company::getActiveCompanyId())
+            ->where('type_of_works.companyId', '=', $companyId)
             ->where('type_of_work_langauages.title', 'Like', "%{$text}%")
             ->orderBy('type_of_work_langauages.title','DESC')
-            ->get();
-                
+            ->get();     
         }
-
         return $typeOfWorkLang ;
     }
 

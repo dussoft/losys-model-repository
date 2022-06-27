@@ -95,10 +95,10 @@ class Address extends Model
      **/
     public function company()
     {
-        return $this->belongsTo(\App\Models\Company::class, 'company');
+        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'company');
     }
 
     public function contactPerson(){
-        return $this->hasMany(\App\Models\AddressCompanyContactPerson::class, 'addressId');
+        return $this->hasMany(\Referenzverwaltung\Models\AddressCompanyContactPerson::class, 'addressId');
     }
 }

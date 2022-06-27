@@ -79,12 +79,9 @@ class AddressCompanyContactPerson extends Model
 
     public function address()
     {
-        return $this->belongsTo(\App\Models\Address::class, 'addressId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Address::class, 'addressId');
     }
-
     public function getYearOfBirthAttribute($value){
-
         return date("d M Y",strtotime($value));
-        
     }
 }

@@ -54,7 +54,7 @@ class CompanyEmployeeLanguage extends Model
      */
 
 
-    public static function translate($employeId)
+    public static function translate($employeId, $lang="en")
     {
        
         
@@ -62,7 +62,7 @@ class CompanyEmployeeLanguage extends Model
         //  ->join('users', 'users.id', '=', 'employee_langauages.employeId')
         ->join('languages', 'languages.id', '=', 'employee_langauages.languageId')
          ->where('employee_langauages.employeId', '=', $employeId)
-        ->where('languages.shortName', app()->getLocale())
+        ->where('languages.shortName', $lang)
         ->orderBy('languages.isDefault', 'DESC')
         ->first();
 

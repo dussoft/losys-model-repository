@@ -60,6 +60,6 @@ class ProjectAttribute extends Model
      **/
     public function project()
     {
-        return $this->belongsTo(\App\Models\Project::class, 'project');
+        return $this->belongsTo(\Referenzverwaltung\Models\Project::class, 'project');
     }
 }

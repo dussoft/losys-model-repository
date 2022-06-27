@@ -52,11 +52,11 @@ class CompanyLanguage extends Model
 
     public function language()
     {
-        return $this->belongsTo(\App\Models\Language::class, 'languageId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Language::class, 'languageId');
     }
 
 
-    public static function translate($employeId)
+    public static function translate($employeId, $lang="en")
     {
        
         
@@ -64,7 +64,7 @@ class CompanyLanguage extends Model
         //  ->join('users', 'users.id', '=', 'employee_langauages.employeId')
         ->join('languages', 'languages.id', '=', 'employee_langauages.languageId')
          ->where('employee_langauages.employeId', '=', $employeId)
-        ->where('languages.shortName', app()->getLocale())
+        ->where('languages.shortName', $lang)
         ->orderBy('languages.isDefault', 'DESC')
         ->first();
 

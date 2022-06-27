@@ -52,7 +52,7 @@ class DefaultTypeOfWorkLanguage extends Model
     ];
     public function language()
     {
-        return $this->belongsTo(\App\Models\Language::class, 'languageId', 'languageId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Language::class, 'languageId', 'languageId');
     }
 
     /**
@@ -61,17 +61,17 @@ class DefaultTypeOfWorkLanguage extends Model
 
     public function defaultTypeofwork()
     {
-        return $this->belongsTo(\App\Models\DefaultTypeOfWork::class, 'typeOfWorkId', 'typeOfWorkId');
+        return $this->belongsTo(\Referenzverwaltung\Models\DefaultTypeOfWork::class, 'typeOfWorkId', 'typeOfWorkId');
     }
 
-    public static function translate($typeOfWorkId)
+    public static function translate($typeOfWorkId, $lang="en")
     {
        
         $typeOfWorkLang = DB::table('default_type_of_work_langauages')
         ->join('default_type_of_works', 'default_type_of_works.id', '=', 'default_type_of_work_langauages.typeOfWorkId')
         ->join('languages', 'languages.id', '=', 'default_type_of_work_langauages.languageId')
         ->where('default_type_of_work_langauages.typeOfWorkId', '=', $typeOfWorkId)
-        ->where('languages.shortName', app()->getLocale())
+        ->where('languages.shortName', $lang)
         ->orderBy('languages.isDefault', 'DESC')
         ->first();
         

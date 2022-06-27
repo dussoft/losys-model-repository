@@ -43,7 +43,7 @@ class DefaultTypeOfBuilding extends Model
     ];
     public function typeofbuildingid()
     {
-        return $this->belongsTo(\App\Models\TypeOfBuilding::class, 'typeOfBuildingId', 'typeOfBuildingId');
+        return $this->belongsTo(\Referenzverwaltung\Models\TypeOfBuilding::class, 'typeOfBuildingId', 'typeOfBuildingId');
     }
 
     /**
@@ -51,7 +51,7 @@ class DefaultTypeOfBuilding extends Model
      **/
     public function languageid()
     {
-        return $this->belongsTo(\App\Models\Language::class, 'languageId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Language::class, 'languageId');
     }
 
     /**
@@ -59,7 +59,7 @@ class DefaultTypeOfBuilding extends Model
      **/
     public function typeOfBuildingLanguages()
     {
-        return $this->hasMany(\App\Models\DefaultTypeOfBuildingLanguage::class, 'typeOfBuilding');
+        return $this->hasMany(\Referenzverwaltung\Models\DefaultTypeOfBuildingLanguage::class, 'typeOfBuilding');
     }
 
     /**
@@ -67,17 +67,17 @@ class DefaultTypeOfBuilding extends Model
      **/
     public function typeOfBuildingLanguage1s()
     {
-        return $this->hasMany(\App\Models\DefaultTypeOfBuildingLanguage::class, 'Language');
+        return $this->hasMany(\Referenzverwaltung\Models\DefaultTypeOfBuildingLanguage::class, 'Language');
     }
 
-    public static function translate($typeOfBuildingId)
+    public static function translate($typeOfBuildingId, $lang="en")
     {
        
         $typeOfBuildingLang = DB::table('default_type_of_building_languages')
         ->join('default_type_of_buildings', 'default_type_of_buildings.id', '=', 'default_type_of_building_languages.typeOfBuildingId')
         ->join('languages', 'languages.id', '=', 'default_type_of_building_languages.languageId')
         ->where('default_type_of_building_languages.typeOfBuildingId', '=', $typeOfBuildingId)
-        ->where('languages.shortName', app()->getLocale())
+        ->where('languages.shortName', $lang)
         ->orderBy('languages.isDefault', 'DESC')
         ->first();
 

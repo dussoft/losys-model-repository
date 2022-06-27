@@ -50,26 +50,24 @@ class CategoryLanguage extends Model
     public static $rules = [
         
     ];
-    public static function translate($categoryId)
+    public static function translate($categoryId, $lang="en")
     {
        
         $categoryLang = DB::table('category_languages')
-        ->join('categories', 'categories.id', '=', 'category_languages.categoryId')
-        ->join('languages', 'languages.id', '=', 'category_languages.languageId')
-        ->where('category_languages.categoryId', '=', $categoryId)
-        ->where('languages.shortName', app()->getLocale())
-        ->orderBy('languages.isDefault', 'DESC')
-        ->first();
+            ->join('categories', 'categories.id', '=', 'category_languages.categoryId')
+            ->join('languages', 'languages.id', '=', 'category_languages.languageId')
+            ->where('category_languages.categoryId', '=', $categoryId)
+            ->where('languages.shortName', $lang)
+            ->orderBy('languages.isDefault', 'DESC')
+            ->first();
 
         if(!$categoryLang){
-         
-        $categoryLang =  DB::table('category_languages')
-        ->join('categories', 'categories.id', '=', 'category_languages.categoryId')
-        ->join('languages', 'languages.id', '=', 'category_languages.languageId')
-        ->where('category_languages.categoryId', '=', $categoryId)
-      
-        ->orderBy('languages.isDefault', 'DESC')
-        ->first();
+            $categoryLang =  DB::table('category_languages')
+                ->join('categories', 'categories.id', '=', 'category_languages.categoryId')
+                ->join('languages', 'languages.id', '=', 'category_languages.languageId')
+                ->where('category_languages.categoryId', '=', $categoryId)
+                ->orderBy('languages.isDefault', 'DESC')
+                ->first();
         }
 
         return $categoryLang;

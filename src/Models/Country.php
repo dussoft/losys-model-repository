@@ -63,7 +63,7 @@ class Country extends Model
         } else if ($country && app()->getLocale() == 'en') {
             $countryName = $country->en;
         } else {
-            $lang = \App\Models\Language::where('isDefault', 1)->first();
+            $lang = \Referenzverwaltung\Models\Language::where('isDefault', 1)->first();
             if ($country && $lang && $lang->shortName == 'de') {
                 $countryName = $country->de;
             } else if ($country && $lang && $lang->shortName == 'en') {

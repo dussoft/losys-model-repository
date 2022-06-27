@@ -92,20 +92,20 @@ class Project extends Model
      **/
     public function company()
     {
-        return $this->belongsTo(\App\Models\Company::class, 'companyId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'companyId');
     }
     public function language()
     {
-        return $this->belongsTo(\App\Models\Language::class, 'languageId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Language::class, 'languageId');
     }
 
     public function typeOfBuilding()
     {
-        return $this->belongsTo(\App\Models\TypeOfBuilding::class, 'typeOfBuildingId');
+        return $this->belongsTo(\Referenzverwaltung\Models\TypeOfBuilding::class, 'typeOfBuildingId');
     }
     public function typeOfContruction()
     {
-        return $this->belongsTo(\App\Models\TypeOfConstruction::class, 'typeOfContructionId');
+        return $this->belongsTo(\Referenzverwaltung\Models\TypeOfConstruction::class, 'typeOfContructionId');
     }
 
   
@@ -135,7 +135,7 @@ class Project extends Model
         if($isArray){
             return Project::whereIn('companyId', $companyId)->groupBy('yearOfCompletion')->pluck('yearOfCompletion');
         }else{
-            return Project::where('companyId',$companyId?$companyId:\App\Models\Company::getActiveCompanyId())->groupBy('yearOfCompletion')->pluck('yearOfCompletion');
+            return Project::where('companyId',$companyId)->groupBy('yearOfCompletion')->pluck('yearOfCompletion');
         }
        
     }
@@ -146,7 +146,7 @@ class Project extends Model
         if($isArray){
             return Project::whereIn('companyId', $companyId)->where('canton','!=',NULL)->groupBy('canton')->pluck('canton');
         }else{
-            return Project::where('companyId',$companyId?$companyId:\App\Models\Company::getActiveCompanyId())->where('canton','!=',NULL)->groupBy('canton')->pluck('canton');
+            return Project::where('companyId',$companyId)->where('canton','!=',NULL)->groupBy('canton')->pluck('canton');
         }
 
      }
@@ -191,11 +191,11 @@ class Project extends Model
         }
         return  $cantonName; 
      }
-     public static function  migrateProject($company,$project){
+     public static function  migrateProject($company,$project, $lang="en"){
          
         $language = Language::where('shortName', $project['language'])->first();
         if($language){
-            $language=\App\Models\Language::where('shortName',app()->getLocale())->first();
+            $language=\Referenzverwaltung\Models\Language::where('shortName',$lang)->first();
         }
 
         $countryName ='CH';

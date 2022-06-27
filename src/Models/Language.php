@@ -54,11 +54,9 @@ class Language extends Model
 
     public static function byCompany($companyId=null)
     {
-        $companyId =  $companyId ?  $companyId : Company::getActiveCompanyId();
         $languages = CompanyLanguage::where('companyId', $companyId)->get();
         $allLanguages=[];
         if(count($languages) > 0){
-
             foreach($languages as $language){
                 $allLanguages[]=$language->language;
             }
@@ -69,7 +67,6 @@ class Language extends Model
 
     public static function byCompanyNotIn($langId,$companyId=null)
     {
-        $companyId =  $companyId ?  $companyId : Company::getActiveCompanyId();
         $languages = CompanyLanguage::where('companyId', $companyId)->whereNotIn('languageId',$langId)->get();
         $allLanguages=[];
         if(count($languages) > 0){

@@ -53,4 +53,8 @@ class AddressRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return Address::updateOrCreate($condition, $data);
     }
+
+    public function getBycompanyAndIds($companyId, $projectParticipatingCompanyId){
+        return Address::whereNotIn('id', $projectParticipatingCompanyId)->where('companyId',  $companyId)->orderBy('name','ASC')->get();
+    }
 }

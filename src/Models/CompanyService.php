@@ -54,7 +54,7 @@ class CompanyService extends Model
 
     public function company()
     {
-        return $this->belongsTo(\App\Models\Company::class, 'companyId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'companyId');
     }
 
     /**
@@ -62,7 +62,7 @@ class CompanyService extends Model
      **/
     public function service()
     {
-        return $this->belongsTo(\App\Models\Service::class, 'serviceId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Service::class, 'serviceId');
     }
 
     public static function data()

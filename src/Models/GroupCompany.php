@@ -55,12 +55,12 @@ class GroupCompany extends Model
      **/
     public function company()
     {
-        return $this->belongsTo(\App\Models\Company::class, 'companyId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'companyId');
     }
 
     public function companies()
     {
-        return $this->belongsToMany(\App\Models\Company::class, 'companyId');
+        return $this->belongsToMany(\Referenzverwaltung\Models\Company::class, 'companyId');
     }
 
     /**
@@ -68,7 +68,7 @@ class GroupCompany extends Model
      **/
     public function group()
     {
-        return $this->belongsTo(\App\Models\Group::class, 'groupId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Group::class, 'groupId');
     }
 
     public static function data()

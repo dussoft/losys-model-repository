@@ -50,4 +50,12 @@ class ProjectParticipatingCompanyRepository extends BaseRepository
         $cloneProjectParticipatingCompany->save();
         return $cloneProjectParticipatingCompany;
     }
+
+    public function getWithAddressByProjectId($projectId){
+        return ProjectParticipatingCompany::where('projectId', $projectId)->with('address', 'typeOfWorks')->orderBy('orderingId','asc')->get();
+    }
+
+    public function getAddessidsByProjectId($projectId){
+        return ProjectParticipatingCompany::where('projectId', $projectId)->pluck('addressId');
+    }
 }

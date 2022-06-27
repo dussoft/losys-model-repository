@@ -55,13 +55,13 @@ class ProjectProperty extends Model
 
     public function projectAttribute()
     {
-        return $this->belongsTo(\App\Models\ProjectAttribute::class, 'projectAttributeId');
+        return $this->belongsTo(\Referenzverwaltung\Models\ProjectAttribute::class, 'projectAttributeId');
     }
 
 
     public static function data($companyId=null,$isIframe=false)
     {
-        $projectIds = Project::where('companyId', $companyId?$companyId:\App\Models\Company::getActiveCompanyId())->pluck('id');
+        $projectIds = Project::where('companyId', $companyId)->pluck('id');
         if (count($projectIds)  > 0) {
             $propertyIds = ProjectProperty::whereIn('projectId', $projectIds)->pluck('projectAttributeId');
 
@@ -85,7 +85,7 @@ class ProjectProperty extends Model
             $projectIds = Project::whereIn('companyId', $companyId)->pluck('id');
         }
         else{
-            $projectIds = Project::where('companyId', $companyId?$companyId:\App\Models\Company::getActiveCompanyId())->pluck('id');
+            $projectIds = Project::where('companyId', $companyId)->pluck('id');
         }
         if (count($projectIds)  > 0) {
             $propertyIds = ProjectProperty::whereIn('projectId', $projectIds)->pluck('projectAttributeId');
@@ -99,7 +99,7 @@ class ProjectProperty extends Model
                 }
                 $resultattributesToDisplay=[];
                 foreach($attributes as $attribute){
-                    $atttributeTranslated=\App\Models\ProjectAttributeLanguage::translate($attribute->id);
+                    $atttributeTranslated=\Referenzverwaltung\Models\ProjectAttributeLanguage::translate($attribute->id);
                     if($atttributeTranslated && $atttributeTranslated->label && ($attribute->type=='number' || $attribute->type=='employees' || $attribute->type=='bool')){
                         $attributeToDisplay = new DisplayAttribute;
                         $attributeToDisplay->label=$atttributeTranslated->label;

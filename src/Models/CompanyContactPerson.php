@@ -86,7 +86,7 @@ class CompanyContactPerson extends Model
      **/
     public function company()
     {
-        return $this->belongsTo(\App\Models\Company::class, 'company');
+        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'company');
     }
 
     

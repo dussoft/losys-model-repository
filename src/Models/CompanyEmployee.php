@@ -97,7 +97,7 @@ class CompanyEmployee extends Model
      **/
     public function user()
     {
-        return $this->hasOne(\App\Models\User::class, 'user');
+        return $this->hasOne(\Referenzverwaltung\Models\User::class, 'user');
     }
 
     /**
@@ -105,7 +105,7 @@ class CompanyEmployee extends Model
      **/
     public function company()
     {
-        return $this->belongsTo(\App\Models\Company::class, 'company');
+        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'company');
     }
 
    

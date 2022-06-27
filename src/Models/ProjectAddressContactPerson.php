@@ -55,15 +55,15 @@ class ProjectAddressContactPerson extends Model
 
     public function contactPerson()
     {
-        return $this->belongsTo(\App\Models\AddressCompanyContactPerson::class, 'contactPersonId');
+        return $this->belongsTo(\Referenzverwaltung\Models\AddressCompanyContactPerson::class, 'contactPersonId');
     }
 
     public function address()
     {
-        return $this->belongsTo(\App\Models\Address::class, 'addressId');
+        return $this->belongsTo(\Referenzverwaltung\Models\Address::class, 'addressId');
     }
 
-    public static function migrateProjectAddressContactPerson($data)
+    public static function migrateProjectAddressContactPerson($data, $usernames="")
     {
         if (isset($data['reference_addresses'])) {
 
@@ -90,7 +90,7 @@ class ProjectAddressContactPerson extends Model
                                 'projectId' => $data['projectId'],
                                 'view_datenblatt_intern'=>1,
                                 'refo_contact_person_id' => $reference_address['refo_contact_person_id'],
-                                'created_by'=>\Auth::user()->firstName.' '.\Auth::user()->lastName
+                                'created_by'=>$usernames
                             ]);
                         }else{
                             //addressId
@@ -103,7 +103,7 @@ class ProjectAddressContactPerson extends Model
                                 'addressId'=>$address->id,
                                 'projectId' => $data['projectId'],
                                 'view_datenblatt_intern'=>1,
-                                'created_by'=>\Auth::user()->firstName.' '.\Auth::user()->lastName
+                                'created_by'=>$usernames
                             ]);
                         }
                     }

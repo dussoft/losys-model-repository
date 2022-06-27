@@ -51,14 +51,14 @@ class ProjectAttributeLanguage extends Model
         
     ];
 
-    public static function translate($projectAttributeId)
+    public static function translate($projectAttributeId, $lang="en")
     {
        
         $projectAttributeLang = DB::table('project_attribute_languages')
         ->join('project_attributes', 'project_attributes.id', '=', 'project_attribute_languages.projectAttributeId')
         ->join('languages', 'languages.id', '=', 'project_attribute_languages.languageId')
         ->where('project_attribute_languages.projectAttributeId', '=', $projectAttributeId)
-        ->where('languages.shortName', app()->getLocale())
+        ->where('languages.shortName', $lang)
         ->orderBy('languages.isDefault', 'DESC')
         ->first();
 

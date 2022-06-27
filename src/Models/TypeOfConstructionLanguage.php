@@ -59,7 +59,7 @@ class TypeOfConstructionLanguage extends Model
      **/
     public function language()
     {
-        return $this->belongsTo(\App\Models\Language::class, 'language');
+        return $this->belongsTo(\Referenzverwaltung\Models\Language::class, 'language');
     }
 
     /**
@@ -67,17 +67,17 @@ class TypeOfConstructionLanguage extends Model
      **/
     public function typeofconstration()
     {
-        return $this->belongsTo(\App\Models\TypeOfConstruction::class, 'typeOfConstration');
+        return $this->belongsTo(\Referenzverwaltung\Models\TypeOfConstruction::class, 'typeOfConstration');
     }
 
-    public static function translate($typeOfConstructionId)
+    public static function translate($typeOfConstructionId, $lang="en")
     {
        
         $typeOfConstructionLang = DB::table('type_of_construction_languages')
         ->join('type_of_constructions', 'type_of_constructions.id', '=', 'type_of_construction_languages.typeOfConstrationId')
         ->join('languages', 'languages.id', '=', 'type_of_construction_languages.languageId')
         ->where('type_of_construction_languages.typeOfConstrationId', '=', $typeOfConstructionId)
-        ->where('languages.shortName', app()->getLocale())
+        ->where('languages.shortName', $lang)
         ->orderBy('languages.isDefault', 'DESC')
         ->first();
 

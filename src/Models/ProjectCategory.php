@@ -57,7 +57,7 @@ class ProjectCategory extends Model
         if($isArray){
             $projectIds = Project::whereIn('companyId', $companyId)->pluck('id');
         }else{
-            $projectIds = Project::where('companyId', $companyId?$companyId:\App\Models\Company::getActiveCompanyId())->pluck('id');
+            $projectIds = Project::where('companyId', $companyId)->pluck('id');
         }
         if (count($projectIds)  > 0) {
             
