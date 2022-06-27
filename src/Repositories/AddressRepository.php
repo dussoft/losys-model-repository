@@ -57,4 +57,10 @@ class AddressRepository extends BaseRepository
     public function getBycompanyAndIds($companyId, $projectParticipatingCompanyId){
         return Address::whereNotIn('id', $projectParticipatingCompanyId)->where('companyId',  $companyId)->orderBy('name','ASC')->get();
     }
+
+    public function getIdsByCompanyId($companyId){
+       return Address::where('companyId', $companyId)->pluck('id');
+    }
+
+    
 }

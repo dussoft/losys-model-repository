@@ -53,5 +53,9 @@ class ProjectParticipatingCompanyInvolvedRepository extends BaseRepository
         $cloneInvolvedCompany->save();
     }
 
+    public function createOrUpdate($cond, $data){
+        ProjectParticipatingCompanyInvolved::updateOrCreate($cond, $data);
+    }
+
 
 }

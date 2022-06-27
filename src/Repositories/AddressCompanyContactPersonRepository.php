@@ -53,4 +53,8 @@ class AddressCompanyContactPersonRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return AddressCompanyContactPerson::updateOrCreate($condition, $data);
     }
+
+    public function getByAddressIds($addressIds){
+        return AddressCompanyContactPerson::whereIn('addressId',$addressIds)->get();
+    }
 }

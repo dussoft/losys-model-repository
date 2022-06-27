@@ -58,4 +58,20 @@ class ProjectParticipatingCompanyRepository extends BaseRepository
     public function getAddessidsByProjectId($projectId){
         return ProjectParticipatingCompany::where('projectId', $projectId)->pluck('addressId');
     }
+
+    public function getByProjectAndOrder($projectId, $orderingId){
+        return ProjectParticipatingCompany::where('projectId', $projectId)->where('orderingId', $orderingId )->first();
+    }
+
+    public function getByAddressAndProject($addressId, $projectId){
+        return ProjectParticipatingCompany::where('addressId',$addressId)->where('projectId',$projectId)->first();
+    }
+
+    public function getByProjectIdAndOrder($projectId, $order){
+        return ProjectParticipatingCompany::where('projectId', $projectId)->orderBy('orderingId',$order)->get();
+    }
+
+    public function getUndisplayed($projectId){
+        ProjectParticipatingCompany::where('projectId',$projectId)->where('view_web',0)->where('view_datenblatt_extern',0)->where('view_datenblatt_intern',0)->get();
+    }
 }
