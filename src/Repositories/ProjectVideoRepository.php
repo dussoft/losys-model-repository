@@ -51,4 +51,18 @@ class ProjectVideoRepository extends BaseRepository
         $cloneProjectVideo->save();
     }
 
+    public function getByProjectAndMain($projectId, $main){
+        return ProjectVideo::where('projectId',$projectId)
+                ->where('isMainVideo',$main)
+                ->orderBy('id','ASC')->get();
+    }
+
+    public function getInfMax($id, $projectId){
+        return ProjectVideo::where('id', '<', $id)->where('projectId',$projectId)->max('id');
+    }
+
+    public function getSupMin($id, $projectId){
+        return ProjectVideo::where('id', '>', $id)->where('projectId',$projectId)->min('id');
+    }
+
 }
