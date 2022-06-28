@@ -54,4 +54,8 @@ class ProjectTypeOfContructionRepository extends BaseRepository
         $cloneProjectTypeOfContruction->save();
         return $cloneProjectTypeOfContruction;
     }
+
+    public function getConstructionIdsByProject($projectId){
+        return ProjectTypeOfContruction::where('projectId', $projectId)->pluck('typeOfContructionId');
+    }
 }
