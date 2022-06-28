@@ -54,4 +54,8 @@ class ProjectTypeOfWorkRepository extends BaseRepository
         $cloneProjectTypeOfWork->save();
         return $cloneProjectTypeOfWork;
     }
+
+    public function getWorkIdsByProject($projectId){
+        return ProjectTypeOfWork::where('projectId', $projectId)->pluck('typeOfWorkId');
+    }
 }

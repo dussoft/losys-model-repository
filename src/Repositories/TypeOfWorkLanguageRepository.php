@@ -44,8 +44,8 @@ class TypeOfWorkLanguageRepository extends BaseRepository
         return TypeOfWorkLanguage::updateOrCreate($condition, $data);
     }
 
-    public function translate($id){
-        return TypeOfWorkLanguage::translate($id);
+    public function translate($id, $lang="en"){
+        return TypeOfWorkLanguage::translate($id, $lang);
     }
 }
 
