@@ -53,4 +53,8 @@ class ProjectPropertyRepository extends BaseRepository
         $cloneProjectProperty->projectId = $cloneProjectId;
         $cloneProjectProperty->save();
     }
+
+    public function updateOrCreate($cond, $data){
+        return ProjectProperty::updateOrCreate($cond, $data);
+    }
 }

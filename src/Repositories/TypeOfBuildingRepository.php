@@ -67,4 +67,8 @@ class TypeOfBuildingRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return TypeOfBuilding::updateOrCreate($condition, $data);
     }
+
+    public function excludeBuildingFromCompany($projectTypeOfBuildingId, $companyId){
+        return TypeOfBuilding::whereNotIn('id', $projectTypeOfBuildingId)->where('companyId', $companyId)->get();
+    }
 }

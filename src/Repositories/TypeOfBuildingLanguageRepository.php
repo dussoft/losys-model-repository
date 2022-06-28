@@ -43,4 +43,8 @@ class TypeOfBuildingLanguageRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return TypeOfBuildingLanguage::updateOrCreate($condition, $data);
     }
+
+    public function translate($id, $lang){
+        return TypeOfBuildingLanguage::translate($id, $lang);
+    }
 }
