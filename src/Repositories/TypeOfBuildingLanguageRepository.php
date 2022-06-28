@@ -47,4 +47,22 @@ class TypeOfBuildingLanguageRepository extends BaseRepository
     public function translate($id, $lang){
         return TypeOfBuildingLanguage::translate($id, $lang);
     }
+
+    public function getByLanguageAndBuilding($langId, $typeOfBuildingId){
+        return TypeOfBuildingLanguage::where('languageId',$langId)->where('typeOfBuildingId', $typeOfBuildingId)->first();
+    }
+
+    public function getByTypeOfBuildingId($typeOfBuilding){
+        return TypeOfBuildingLanguage::where('typeOfBuildingId',$typeOfBuilding)->get();
+    }
+
+    public function getLanguagesByTypeId($id){
+        return DB::table('type_of_building_languages')
+        ->join('type_of_buildings', 'type_of_buildings.id', '=', 'type_of_building_languages.typeOfBuildingId')
+        ->join('languages', 'languages.id', '=', 'type_of_building_languages.languageId')
+        ->where('type_of_building_languages.typeOfBuildingId', '=', $id)
+        ->orderBy('languages.isDefault', 'DESC')
+        ->groupBy(['type_of_building_languages.id']);
+    }
+    
 }

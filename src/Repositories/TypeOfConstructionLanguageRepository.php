@@ -46,4 +46,20 @@ class TypeOfConstructionLanguageRepository extends BaseRepository
     public function translate($id, $lang){
         return TypeOfConstructionLanguage::translate($id, $lang);
     }
+
+    public function getLanguagesByTypeId($id){
+        return DB::table('type_of_construction_languages')
+        ->join('type_of_constructions', 'type_of_constructions.id', '=', 'type_of_construction_languages.typeOfConstrationId')
+        ->join('languages', 'languages.id', '=', 'type_of_construction_languages.languageId')
+        ->where('type_of_construction_languages.typeOfConstrationId', '=', $id)
+        ->orderBy('languages.isDefault', 'DESC')
+        ->groupBy(['type_of_construction_languages.id']);
+    }
+
+    public function getByLangAndType($langId, $typeId){
+        return TypeOfConstructionLanguage::where('languageId',$langId)->where('typeOfConstrationId', $typeId)->first();
+    }
+    public function getByTypeiD($typeId){
+        return TypeOfConstructionLanguage::where('typeOfConstrationId', $typeId)->get();
+    }
 }
