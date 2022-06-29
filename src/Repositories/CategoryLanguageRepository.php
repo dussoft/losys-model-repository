@@ -38,4 +38,17 @@ class CategoryLanguageRepository extends BaseRepository
     {
         return CategoryLanguage::class;
     }
+
+    public function getLanguagesById($id){
+        return DB::table('category_languages')
+        ->join('categories', 'categories.id', '=', 'category_languages.categoryId')
+        ->join('languages', 'languages.id', '=', 'category_languages.languageId')
+        ->where('category_languages.categoryId', '=', $id)
+        ->orderBy('languages.isDefault', 'DESC')
+        ->groupBy(['category_languages.id']);
+    }
+
+    public function getByLangAndCategory($lang, $categoryId){
+        return CategoryLanguage::where('languageId',$lang)->where('categoryId', $categoryId)->first();
+    }
 }

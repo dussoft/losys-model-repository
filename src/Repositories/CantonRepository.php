@@ -45,4 +45,8 @@ class CantonRepository extends BaseRepository
     public function getByName($cantonname){
         return Canton::where('de', $cantonname)->orwhere('en', $cantonname)->orwhere('fr', $cantonname)->orwhere('it', $cantonname)->first();
     }
+
+    public function updateOrCreate($cond, $data){
+        return  Canton::updateOrCreate($cond,$data);
+    }
 }

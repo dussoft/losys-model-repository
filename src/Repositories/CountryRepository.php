@@ -43,4 +43,8 @@ class CountryRepository extends BaseRepository
     public function getByName($countryname){
         return Country::where('de', $countryname)->orwhere('en', $countryname)->first();
     }
+
+    public function updateOrCreate($cond, $data){
+        return  Country::updateOrCreate($cond,$data);
+    }
 }
