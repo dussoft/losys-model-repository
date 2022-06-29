@@ -57,4 +57,8 @@ class AddressCompanyContactPersonRepository extends BaseRepository
     public function getByAddressIds($addressIds){
         return AddressCompanyContactPerson::whereIn('addressId',$addressIds)->get();
     }
+
+    public function getByAddressId($addressId){
+        return AddressCompanyContactPerson::where('addressId',$addressIds)->get();
+    }
 }

@@ -78,4 +78,12 @@ class ProjectParticipatingCompanyRepository extends BaseRepository
     public function getIdsFromProjects($projectIds){
         return ProjectParticipatingCompany::whereIn('projectId',$prokectIds)->pluck('id');
     }
+
+    public function getByAddressId($addressId){
+        return ProjectParticipatingCompany::where('addressId', $addressId)->get();
+    }
+
+    public function getAddressIdsFromProject($projectId){
+        return ProjectParticipatingCompany::whereIn('projectId',$projectId)->pluck('addressId');
+    }
 }

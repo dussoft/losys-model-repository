@@ -614,11 +614,15 @@ class ProjectRepository extends BaseRepository
         Project::where('companyId',$companyId)->where('refo_project_id', $refoId)->first();
     }
 
-    public function getForPDF($companyIds){
-        return Project::whereIn('id', $companyIds)
+    public function getForPDF($ids){
+        return Project::whereIn('id', $ids)
         ->orderBy('yearOfCompletion', 'DESC')
         ->orderBy('id', 'DESC')
         ->get();
+    }
+
+    public function getProjectsForIds($ids){
+        return Project::whereIn('id',$ids)->get();
     }
 
     public function getIdsByCompany($companyId){
