@@ -58,4 +58,12 @@ class CompanyEmployeeRepository extends BaseRepository
     public function getByCompany($companyId){
         return CompanyEmployee::where('companyId', $companyId)->orderBy('lastName', 'asc')->orderBy('firstName', 'asc')->get();
     }
+
+    public function getActiveByCompany($companyId){
+        return CompanyEmployee::where('companyId', $companyId)->where('status', 'Active')->get();
+    }
+
+    public function getActiveByIds($ids){
+        return CompanyEmployee::whereIn('id', $ids)->get();
+    }
 }

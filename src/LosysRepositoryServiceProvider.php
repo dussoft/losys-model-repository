@@ -76,6 +76,7 @@ class LosysRepositoryServiceProvider extends ServiceProvider
             CategoryRepository::class,
             CompanyContactPersonRepository::class,
             CompanyEmployeeRepository::class,
+            CompanyEmployeeLanguageRepository::class,
             CompanyRepository::class,
             CompanyServiceRepository::class,
             CountryRepository::class,

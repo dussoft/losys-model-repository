@@ -57,4 +57,8 @@ class ProjectPropertyRepository extends BaseRepository
     public function updateOrCreate($cond, $data){
         return ProjectProperty::updateOrCreate($cond, $data);
     }
+
+    public function getValuesFromProjectAttributeId($attributeIds){
+        return ProjectProperty::whereIn('projectAttributeId',$attributeIds)->pluck('value');
+    }
 }

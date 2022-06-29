@@ -46,4 +46,12 @@ class CompanyContactPersonRepository extends BaseRepository
     {
         return CompanyContactPerson::class;
     }
+
+    public function getContactPersonLanguage($id){
+        return DB::table('employee_langauages')
+        ->join('languages', 'languages.id', '=', 'employee_langauages.languageId')
+        ->where('employee_langauages.employeId', '=', $id)
+        ->orderBy('languages.isDefault', 'DESC')
+        ->groupBy(['employee_langauages.id']);
+    }
 }
