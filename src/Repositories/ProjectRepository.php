@@ -621,4 +621,8 @@ class ProjectRepository extends BaseRepository
         ->get();
     }
 
+    public function getIdsByCompany($companyId){
+        return Project::where('companyId', $companyId)->pluck('id');
+    }
+
 }

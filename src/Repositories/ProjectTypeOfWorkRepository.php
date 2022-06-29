@@ -47,6 +47,10 @@ class ProjectTypeOfWorkRepository extends BaseRepository
         return ProjectTypeOfWork::where("projectId", $projectId)->get();
     }
 
+    public function getByTypeOfWorkId($id){
+        return ProjectTypeOfWork::where("typeOfWorkId", $id)->get();
+    }
+
     public function replicate($id, $cloneProjectId){
         $projectTypeOfWork= ProjectTypeOfWork::where("id", $id)->first();
         $cloneProjectTypeOfWork = $projectTypeOfWork->replicate();
@@ -57,5 +61,9 @@ class ProjectTypeOfWorkRepository extends BaseRepository
 
     public function getWorkIdsByProject($projectId){
         return ProjectTypeOfWork::where('projectId', $projectId)->pluck('typeOfWorkId');
+    }
+
+    public function getWorkIdsByProjects($projectIds){
+        return ProjectTypeOfWork::whereIn('projectId',$projectIds)->pluck('typeOfWorkId');
     }
 }

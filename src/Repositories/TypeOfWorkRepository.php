@@ -77,4 +77,49 @@ class TypeOfWorkRepository extends BaseRepository
         ->orderBy('type_of_work_langauages.title')
             ->get(['type_of_works.*']);
     }
+
+    public function getByCompanyExcludeIdsPaginateOrder($companyId, $ids, $order="desc", $paginate=10){
+        return TypeOfWork::where('companyId', $companyId)
+                    ->whereNotIn('id',$ids)
+                    ->orderBy('updated_at',$order)->paginate($paginate);
+    }
+
+    public function getByCompanyExcludeIdsOrder($companyId, $ids, $order="desc"){
+        return TypeOfWork::where('companyId',$companyId)
+        ->whereNotIn('id',$ids)
+        ->orderBy('updated_at',$order)->get();
+    }
+
+    public function getByCompanyIncludeIdsPaginateOrder($companyId, $ids, $order="desc", $paginate=10){
+        return TypeOfWork::where('companyId', $companyId)
+        ->where('id', 'in', $ids)->orderBy('updated_at',$order)->paginate($paginate);
+    }
+
+    
+
+    public function getByCompanyAndLang($companyId, $lang){
+        return TypeOfWork::join('type_of_work_langauages', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
+        ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
+        ->where('type_of_works.companyId', $companyId)
+        ->where('languages.shortName', $lang)
+       ->orderBy('type_of_work_langauages.title')
+        ->get(['type_of_works.*']);
+    }
+
+    public function searchFromLanguage($request){
+        $query =  TypeOfWork::where('companyId', $request->companyId)->orderBy('updated_at','desc');
+        if ($request->textSearch) {
+            $search = $request->textSearch;
+            $typeOfWorkLanguageId = TypeOfWorkLanguage::where('title','LIKE', "%{$search}%")->orderBy('title','ASC')->pluck('typeOfWorkId');
+            $query =  $query->whereIn('id', $typeOfWorkLanguageId);
+        }
+
+        if ($request->isSearch) {
+            $typeOfWorks =  $query->where('companyId',$request->companyId)->orderBy('updated_at','desc')->get();
+        } else {
+            $typeOfWorks =  $query->where('companyId', $request->companyId)->orderBy('updated_at','desc')->paginate(50);
+        }
+
+        return $typeOfWorks;
+    }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace Referenzverwaltung\Repositories;
-
+use Illuminate\Support\Facades\DB;
 use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfConstructionLanguage;
 

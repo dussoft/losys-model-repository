@@ -43,6 +43,10 @@ class ProjectParticipatingCompanyInvolvedRepository extends BaseRepository
         return ProjectParticipatingCompanyInvolved::where("participatingCompanyId", $id)->get();
     }
 
+    public function getByTypeOfWorkId($id){
+        return ProjectParticipatingCompanyInvolved::where("typeOfWork", $id)->get();
+    }
+
     public function getTypeOfWorkIdByParticipatingCompanyId($id){
         return ProjectParticipatingCompanyInvolved::where("participatingCompanyId", $id)->pluck('typeOfWorkId');
     }
@@ -54,7 +58,11 @@ class ProjectParticipatingCompanyInvolvedRepository extends BaseRepository
     }
 
     public function createOrUpdate($cond, $data){
-        ProjectParticipatingCompanyInvolved::updateOrCreate($cond, $data);
+       return ProjectParticipatingCompanyInvolved::updateOrCreate($cond, $data);
+    }
+
+    public function getTypeOfWorkIdByParticipatingCompanyIds($ids){
+        return ProjectParticipatingCompanyInvolved::whereIn('participatingCompanyId',$ids)->pluck('typeOfWorkId');
     }
 
 

@@ -1,7 +1,7 @@
 <?php
 
 namespace Referenzverwaltung\Repositories;
-
+use Illuminate\Support\Facades\DB;
 use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfWorkLanguage;
 
@@ -49,19 +49,33 @@ class TypeOfWorkLanguageRepository extends BaseRepository
     }
 
     public function getLanguagesByTypeId($id){
-        return DB::table('type_of_construction_languages')
-        ->join('type_of_constructions', 'type_of_constructions.id', '=', 'type_of_construction_languages.typeOfConstrationId')
-        ->join('languages', 'languages.id', '=', 'type_of_construction_languages.languageId')
-        ->where('type_of_construction_languages.typeOfConstrationId', '=', $id)
+        return DB::table('type_of_work_langauages')
+        ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
+        ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
+        ->where('type_of_work_langauages.typeOfWorkId', '=', $id)
         ->orderBy('languages.isDefault', 'DESC')
-        ->groupBy(['type_of_construction_languages.id']);
+        ->groupBy(['type_of_work_langauages.id']);
     }
+
+    
 
     public function getByLangAndType($langId, $typeId){
         return TypeOfWorkLanguage::where('languageId',$langId)->where('typeOfWorkId', $typeId)->first();
     }
     public function getByTypeiD($typeId){
         return TypeOfWorkLanguage::where('typeOfWorkId', $typeId)->get();
+    }
+
+    public function searchWorkids($search){
+        return TypeOfWorkLanguage::where('title','LIKE', "%{$search}%")->orderBy('title','ASC')->pluck('typeOfWorkId');
+    }
+
+    public function search($text){
+        return TypeOfWorkLanguage::search($text);
+    }
+
+    public function getByTypeOfWorkId($typeOfWorkId){
+        return TypeOfWorkLanguage::where('typeOfWorkId',$typeOfWorkId)->get();
     }
 }
 

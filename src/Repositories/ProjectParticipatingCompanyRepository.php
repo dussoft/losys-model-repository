@@ -72,6 +72,10 @@ class ProjectParticipatingCompanyRepository extends BaseRepository
     }
 
     public function getUndisplayed($projectId){
-        ProjectParticipatingCompany::where('projectId',$projectId)->where('view_web',0)->where('view_datenblatt_extern',0)->where('view_datenblatt_intern',0)->get();
+        return ProjectParticipatingCompany::where('projectId',$projectId)->where('view_web',0)->where('view_datenblatt_extern',0)->where('view_datenblatt_intern',0)->get();
+    }
+
+    public function getIdsFromProjects($projectIds){
+        return ProjectParticipatingCompany::whereIn('projectId',$prokectIds)->pluck('id');
     }
 }
