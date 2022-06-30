@@ -3,23 +3,20 @@
 namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Repositories\BaseRepository;
-use Referenzverwaltung\Models\ProjectAttributeLanguage;
+use Referenzverwaltung\Models\CompanyLanguage;
 
 /**
- * Class ProjectAttributeLanguageRepository
+ * Class CompanyRepository
  * @package App\Repositories
- * @version December 21, 2020, 8:28 am UTC
+ * @version December 19, 2020, 3:32 pm UTC
 */
 
-class ProjectAttributeLanguageRepository extends BaseRepository
+class CompanyRepository extends BaseRepository
 {
     /**
      * @var array
      */
     protected $fieldSearchable = [
-        'projectAttributeId',
-        'field',
-        'value'
     ];
 
     /**
@@ -37,10 +34,15 @@ class ProjectAttributeLanguageRepository extends BaseRepository
      **/
     public function model()
     {
-        return ProjectAttributeLanguage::class;
+        return CompanyLanguage::class;
     }
 
-    public function getByLanguageId($id){
-        return ProjectAttributeLanguage::where("languageId", $id)->get();
+    public function getByCompanyId($companyId){
+        return CompanyLanguage::where('companyId',$id)->get();
     }
+
+    public function getByLanguageId($languageId){
+        return CompanyLanguage::where('languageId',$id)->get();
+    }
+    
 }

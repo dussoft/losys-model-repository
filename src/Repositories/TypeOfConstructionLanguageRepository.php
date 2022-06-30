@@ -62,4 +62,8 @@ class TypeOfConstructionLanguageRepository extends BaseRepository
     public function getByTypeiD($typeId){
         return TypeOfConstructionLanguage::where('typeOfConstrationId', $typeId)->get();
     }
+
+    public function getByLanguageId($id){
+        return TypeOfConstructionLanguage::where("languageId", $id)->get();
+    }
 }

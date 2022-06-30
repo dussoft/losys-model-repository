@@ -10,6 +10,8 @@ use Referenzverwaltung\Repositories\CategoryLanguageRepository;
 use Referenzverwaltung\Repositories\CategoryRepository;
 use Referenzverwaltung\Repositories\CompanyContactPersonRepository;
 use Referenzverwaltung\Repositories\CompanyEmployeeRepository;
+use Referenzverwaltung\Repositories\CompanyEmployeeLanguageRepository;
+use Referenzverwaltung\Repositories\CompanyLanguageRepository;
 use Referenzverwaltung\Repositories\CompanyRepository;
 use Referenzverwaltung\Repositories\CompanyServiceRepository;
 use Referenzverwaltung\Repositories\CountryRepository;
@@ -83,6 +85,7 @@ class LosysRepositoryServiceProvider extends ServiceProvider
             CompanyContactPersonRepository::class,
             CompanyEmployeeRepository::class,
             CompanyEmployeeLanguageRepository::class,
+            CompanyLanguageRepository::class,
             CompanyRepository::class,
             CompanyServiceRepository::class,
             CountryRepository::class,

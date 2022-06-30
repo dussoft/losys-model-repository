@@ -77,5 +77,9 @@ class TypeOfWorkLanguageRepository extends BaseRepository
     public function getByTypeOfWorkId($typeOfWorkId){
         return TypeOfWorkLanguage::where('typeOfWorkId',$typeOfWorkId)->get();
     }
+
+    public function getByLanguageId($id){
+        return TypeOfWorkLanguage::where("languageId", $id)->get();
+    }
 }
 

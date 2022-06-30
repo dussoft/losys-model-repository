@@ -57,4 +57,12 @@ class IframeTemplateRepository extends BaseRepository
     public function getByCompany($companyId){
         return IframeTemplate::where('companyId', $companyId)->get();
     }
+
+    public function getFirstByCompany($companyId){
+        return IframeTemplate::where('companyId', $companyId)->first();
+    }
+
+    public function getByLink($embedLink){
+        return IframeTemplate::where('link',$embedLink)->first();
+    }
 }

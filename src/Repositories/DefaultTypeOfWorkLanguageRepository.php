@@ -49,4 +49,8 @@ class DefaultTypeOfWorkLangugaeRepository extends BaseRepository
         ->orderBy('languages.isDefault', 'DESC')
         ->groupBy(['default_type_of_work_langauages.id']);
     }
+
+    public function getByLanguageId($id){
+        return DefaultTypeOfWorkLanguage::where("languageId", $id)->get();
+    }
 }

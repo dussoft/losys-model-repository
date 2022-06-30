@@ -44,4 +44,8 @@ class CompanyEmployeeLanguageRepository extends BaseRepository
     public function getByEmployeeId($id){
         return CompanyEmployeeLanguage::where('employeId',$id)->get();
     }
+
+    public function getByLanguageId($id){
+        return CompanyEmployeeLanguage::where("languageId", $id)->get();
+    }
 }

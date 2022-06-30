@@ -43,4 +43,16 @@ class LanguageRepository extends BaseRepository
     public function createorupdate($condition, $data){
         return Language::updateOrCreate($condition, $data);
     }
+
+    public function getDefaults(){
+        return Language::where('isDefault', 1)->get();
+    }
+
+    public function findWithTrush($id){
+        return Language::withTrashed()->find($id);
+    }
+
+    public function getShortnames(){
+        return Language::orderBy('shortname', 'asc')->pluck("shortname")->toArray();
+    }
 }

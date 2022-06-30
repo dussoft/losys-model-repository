@@ -54,4 +54,8 @@ class DefaultTypeOfBuildingLanguageRepository extends BaseRepository
         ->orderBy('languages.isDefault', 'DESC')
         ->groupBy(['default_type_of_building_languages.id']);
     }
+
+    public function getByLanguageId($id){
+        return DefaultTypeOfBuildingLanguage::where("languageId", $id)->get();
+    }
 }
