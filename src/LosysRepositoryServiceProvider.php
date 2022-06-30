@@ -22,6 +22,7 @@ use Referenzverwaltung\Repositories\DefaultTypeOfWorkRepository;
 use Referenzverwaltung\Repositories\GroupCompanyRepository;
 use Referenzverwaltung\Repositories\GroupPrintPdfTemplateRepository;
 use Referenzverwaltung\Repositories\GroupRepository;
+use Referenzverwaltung\Repositories\GroupRightRepository;
 use Referenzverwaltung\Repositories\GroupServiceRepository;
 use Referenzverwaltung\Repositories\IframeTemplateRepository;
 use Referenzverwaltung\Repositories\LanguageRepository;
@@ -93,6 +94,7 @@ class LosysRepositoryServiceProvider extends ServiceProvider
             GroupCompanyRepository::class,
             GroupPrintPdfTemplateRepository::class,
             GroupRepository::class,
+            GroupRightRepository::class,
             GroupServiceRepository::class,
             IframeTemplateRepository::class,
             LanguageRepository::class,
