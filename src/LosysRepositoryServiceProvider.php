@@ -20,6 +20,7 @@ use Referenzverwaltung\Repositories\DefaultTypeOfConstructionRepository;
 use Referenzverwaltung\Repositories\DefaultTypeOfWorkLanguageRepository;
 use Referenzverwaltung\Repositories\DefaultTypeOfWorkRepository;
 use Referenzverwaltung\Repositories\GroupCompanyRepository;
+use Referenzverwaltung\Repositories\GroupMemberRepository;
 use Referenzverwaltung\Repositories\GroupPrintPdfTemplateRepository;
 use Referenzverwaltung\Repositories\GroupRepository;
 use Referenzverwaltung\Repositories\GroupRightRepository;
@@ -92,6 +93,7 @@ class LosysRepositoryServiceProvider extends ServiceProvider
             DefaultTypeOfWorkLanguageRepository::class,
             DefaultTypeOfWorkRepository::class,
             GroupCompanyRepository::class,
+            GroupMemberRepository::class,
             GroupPrintPdfTemplateRepository::class,
             GroupRepository::class,
             GroupRightRepository::class,

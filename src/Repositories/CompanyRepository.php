@@ -97,4 +97,8 @@ class CompanyRepository extends BaseRepository
     public function getByRefoId($refoId){
         return Company::where('refo_company_id',$refoId)->first();
     }
+
+    public function getByGroup($groupId){
+        Company::where('groupId',$groupId)->get();
+    }
 }
