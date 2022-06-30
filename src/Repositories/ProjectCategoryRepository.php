@@ -43,4 +43,8 @@ class ProjectCategoryRepository extends BaseRepository
     public function getByProjectId($id){
         return ProjectCategory::where("projectId", $id)->get();
     }
+
+    public function getCategoryIdByProjectId($projectId){
+        return ProjectCategory::where('projectId', $projectId)->pluck('categoryId');
+    }
 }

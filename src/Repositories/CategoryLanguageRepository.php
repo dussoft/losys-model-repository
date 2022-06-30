@@ -55,4 +55,8 @@ class CategoryLanguageRepository extends BaseRepository
     public function getByLanguageId($lang){
         return CategoryLanguage::where('languageId',$lang)->get();
     }
+
+    public function translate($id, $lang){
+        return CategoryLanguage::translate($projectCategory->id, $lang);
+    }
 }

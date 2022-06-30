@@ -38,4 +38,8 @@ class CategoryRepository extends BaseRepository
     {
         return Category::class;
     }
+
+    public function getByCompanyExcludeIds($companyId, $ids){
+        return Category::whereNotIn('id', $ids)->where('companyId', $companyId)->get();
+    }
 }
