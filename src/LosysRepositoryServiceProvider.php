@@ -13,8 +13,11 @@ use Referenzverwaltung\Repositories\CompanyEmployeeRepository;
 use Referenzverwaltung\Repositories\CompanyRepository;
 use Referenzverwaltung\Repositories\CompanyServiceRepository;
 use Referenzverwaltung\Repositories\CountryRepository;
+use Referenzverwaltung\Repositories\DefaultTypeOfBuildingLanguageRepository;
 use Referenzverwaltung\Repositories\DefaultTypeOfBuildingRepository;
+use Referenzverwaltung\Repositories\DefaultTypeOfConstructionLanguageRepository;
 use Referenzverwaltung\Repositories\DefaultTypeOfConstructionRepository;
+use Referenzverwaltung\Repositories\DefaultTypeOfWorkLanguageRepository;
 use Referenzverwaltung\Repositories\DefaultTypeOfWorkRepository;
 use Referenzverwaltung\Repositories\GroupCompanyRepository;
 use Referenzverwaltung\Repositories\GroupPrintPdfTemplateRepository;
@@ -80,8 +83,11 @@ class LosysRepositoryServiceProvider extends ServiceProvider
             CompanyRepository::class,
             CompanyServiceRepository::class,
             CountryRepository::class,
+            DefaultTypeOfBuildingLanguageRepository::class,
             DefaultTypeOfBuildingRepository::class,
+            DefaultTypeOfConstructionLanguageRepository::class,
             DefaultTypeOfConstructionRepository::class,
+            DefaultTypeOfWorkLanguageRepository::class,
             DefaultTypeOfWorkRepository::class,
             GroupCompanyRepository::class,
             GroupPrintPdfTemplateRepository::class,
