@@ -50,4 +50,8 @@ class ProjectAddressContactPersonRepository extends BaseRepository
     public function getByAddressId($id){
         return ProjectAddressContactPerson::where("addressId", $id)->get();
     }
+
+    public function updateOrCreate($cond, $data){
+        return ProjectAddressContactPerson::updateOrCreate($cond, $data);
+    }
 }

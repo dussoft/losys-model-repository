@@ -43,4 +43,21 @@ class ProjectAttributeLanguageRepository extends BaseRepository
     public function getByLanguageId($id){
         return ProjectAttributeLanguage::where("languageId", $id)->get();
     }
+
+    public function getLangForAttribute($id){
+        return DB::table('project_attribute_languages')
+        ->join('project_attributes', 'project_attributes.id', '=', 'project_attribute_languages.projectAttributeId')
+        ->join('languages', 'languages.id', '=', 'project_attribute_languages.languageId')
+        ->where('project_attribute_languages.projectAttributeId', '=',$id)
+        ->orderBy('languages.isDefault', 'DESC')
+        ->groupBy(['project_attribute_languages.id']);
+    }
+    
+    public function getByLangAndProjectAttrib($languageId, $projectAttributeId){
+        return ProjectAttributeLanguage::where('languageId',$languageId)->where('projectAttributeId', $projectAttributeId)->first();
+    }
+
+    public function getByProjectAttributeId($projectAttributeId){
+        return ProjectAttributeLanguage::where('projectAttributeId',$projectAttributeId)->get();
+    }
 }

@@ -38,4 +38,16 @@ class ProjectAttributeRepository extends BaseRepository
     {
         return ProjectAttribute::class;
     }
+
+    public function getByCompanyId($id){
+        return ProjectAttribute::where('companyId',$id)->orderBy('orderingId','asc')->get();
+    }
+
+    public function getByCompanyAndOrder($companyId, $order){
+        return ProjectAttribute::where('companyId',$companyId)->orderBy('orderingId',$order)->get();
+    }
+
+    public function getFirstByCompanyAndOrder($companyId, $order){
+        return ProjectAttribute::where('companyId',$companyId)->orderBy('orderingId',$order)->first();
+    }
 }
