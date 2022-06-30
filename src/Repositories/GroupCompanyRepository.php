@@ -43,4 +43,12 @@ class GroupCompanyRepository extends BaseRepository
     public function getIdsByCompany($companyId){
         return GroupCompany::where('companyId',$companyId)->pluck('groupId');
     }
+
+    public function getByGroupFixAmount($groupId, $amount){
+        return GroupCompany::where('groupId',$groupId)->paginate($amount);
+    }
+
+    public function getByCompanyFixAmount($companyId, $amount){
+        return GroupCompany::where('companyId',$companyId)->paginate($amount);
+    }
 }
