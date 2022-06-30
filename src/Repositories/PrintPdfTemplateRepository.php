@@ -54,5 +54,8 @@ class PrintPdfTemplateRepository extends BaseRepository
             ->first();
     }
 
+    public function getByCompanyId($companyId){
+        return PrintPdfTemplate::where('companyId', $companyId)->all();
+    }
     
 }
