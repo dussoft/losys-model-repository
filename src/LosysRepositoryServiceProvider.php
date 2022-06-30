@@ -40,6 +40,7 @@ use Referenzverwaltung\Repositories\ProjectTypeOfBuildingRepository;
 use Referenzverwaltung\Repositories\ProjectTypeOfConstructionRepository;
 use Referenzverwaltung\Repositories\ProjectTypeOfWorkRepository;
 use Referenzverwaltung\Repositories\ProjectVideoRepository;
+use Referenzverwaltung\Repositories\RequestRepository;
 use Referenzverwaltung\Repositories\ServiceRepository;
 use Referenzverwaltung\Repositories\TranslationRepository;
 use Referenzverwaltung\Repositories\TypeOfBuildingLanguageRepository;
@@ -111,6 +112,7 @@ class LosysRepositoryServiceProvider extends ServiceProvider
             ProjectTypeOfWorkRepository::class,
             ProjectVideoRepository::class,
             ServiceRepository::class,
+            RequestRepository::class,
             TranslationRepository::class,
             TypeOfBuildingLanguageRepository::class,
             TypeOfBuildingRepository::class,
