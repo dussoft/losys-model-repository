@@ -45,4 +45,13 @@ class DefaultTypeOfBuildingLanguageRepository extends BaseRepository
     public function getByTypeOfBuildingId($typeOfBuildingId){
         return DefaultTypeOfBuildingLanguage::where('typeOfBuildingId', $typeOfBuildingId)->get();
     }
+
+    public function getLanguagesByTypeId($id){
+        return DB::table('default_type_of_building_languages')
+        ->join('default_type_of_buildings', 'default_type_of_buildings.id', '=', 'default_type_of_building_languages.typeOfBuildingId')
+        ->join('languages', 'languages.id', '=', 'default_type_of_building_languages.languageId')
+        ->where('default_type_of_building_languages.typeOfBuildingId', '=', $id)
+        ->orderBy('languages.isDefault', 'DESC')
+        ->groupBy(['default_type_of_building_languages.id']);
+    }
 }
