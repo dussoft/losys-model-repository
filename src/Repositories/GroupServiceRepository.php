@@ -38,4 +38,8 @@ class GroupServiceRepository extends BaseRepository
     {
         return GroupService::class;
     }
+
+    public function getyGroupId($groupId){
+        return GroupService::where('groupId',$groupId)->get();
+    }
 }

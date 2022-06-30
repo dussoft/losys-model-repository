@@ -44,4 +44,12 @@ class GroupPrintPdfTemplateRepository extends BaseRepository
     public function getById($groupCompanyIds, $type){
         return GroupPrintPdfTemplate::whereIn('groupId',$groupCompanyIds)->where('type',$type)->first();
     }
+
+    public function getByGroupId($groupId){
+        return GroupPrintPdfTemplate::where('groupId', $groupId)->get();
+    }
+
+    public function getByGroupIdAndDefault($groupId, $default){
+        return GroupPrintPdfTemplate::where('groupId', $groupId)->where('isDefault', $default)->get();
+    }
 }
