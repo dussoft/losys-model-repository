@@ -48,6 +48,12 @@ class PrintPdfTemplateRepository extends BaseRepository
         ->where('isDefault',$default)->first();
     }
 
+    public function getAllByCompanyandType($companyId, $type, $default){
+        return PrintPdfTemplate::where('companyId', $companyId)
+        ->where('type',$type)
+        ->where('isDefault',$default)->get();
+    }
+
     public function getByCompanyandLayout($companyId, $printlayout){
         PrintPdfTemplate::where('companyId', $companyId)
             ->where('type',$printlayout)
