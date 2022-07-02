@@ -6,7 +6,7 @@ use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\DefaultTypeOfWorkLanguage;
 
 
-class DefaultTypeOfWorkLangugaeRepository extends BaseRepository
+class DefaultTypeOfWorkLanguageRepository extends BaseRepository
 {
     /**
      * @var array

@@ -6,7 +6,7 @@ use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\DefaultTypeOfConstructionLanguage;
 
 
-class DefaultTypeOfConstructionLangugaeRepository extends BaseRepository
+class DefaultTypeOfConstructionLanguageRepository extends BaseRepository
 {
     /**
      * @var array
