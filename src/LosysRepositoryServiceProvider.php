@@ -4,7 +4,7 @@ namespace Referenzverwaltung;
 
 use Illuminate\Support\ServiceProvider;
 use Referenzverwaltung\Repositories\AddressCompanyContactPersonRepository;
-use Referenzverwaltung\Repositories\AddressRepository;
+//use Referenzverwaltung\Repositories\AddressRepository;
 use Referenzverwaltung\Repositories\CantonRepository;
 use Referenzverwaltung\Repositories\CategoryLanguageRepository;
 use Referenzverwaltung\Repositories\CategoryRepository;
@@ -78,7 +78,7 @@ class LosysRepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             AddressCompanyContactPersonRepository::class,
-            AddressRepository::class,
+            //AddressRepository::class,
             CantonRepository::class,
             CategoryLanguageRepository::class,
             CategoryRepository::class,
