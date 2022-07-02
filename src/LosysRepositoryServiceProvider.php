@@ -76,8 +76,56 @@ class LosysRepositoryServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind(
-            AddressRepository::class
-        );
+        $this->app->bind(AddressCompanyContactPersonRepository::class);
+        $this->app->bind(AddressRepository::class);
+        $this->app->bind(CantonRepository::class);
+        $this->app->bind(CategoryLanguageRepository::class);
+        $this->app->bind(CategoryRepository::class);
+        $this->app->bind(CompanyContactPersonRepository::class);
+        $this->app->bind(CompanyEmployeeRepository::class);
+        $this->app->bind(CompanyEmployeeLanguageRepository::class);
+        $this->app->bind(CompanyLanguageRepository::class);
+        $this->app->bind(CompanyRepository::class);
+        $this->app->bind(CompanyServiceRepository::class);
+        $this->app->bind(CountryRepository::class);
+        $this->app->bind(DefaultTypeOfBuildingLanguageRepository::class);
+        $this->app->bind(DefaultTypeOfBuildingRepository::class);
+        $this->app->bind(DefaultTypeOfConstructionLanguageRepository::class);
+        $this->app->bind(DefaultTypeOfConstructionRepository::class);
+        $this->app->bind(DefaultTypeOfWorkLanguageRepository::class);
+        $this->app->bind(DefaultTypeOfWorkRepository::class);
+        $this->app->bind(GroupCompanyRepository::class);
+        $this->app->bind(GroupMemberRepository::class);
+        $this->app->bind(GroupPrintPdfTemplateRepository::class);
+        $this->app->bind(GroupRepository::class);
+        $this->app->bind(GroupRightRepository::class);
+        $this->app->bind(GroupServiceRepository::class);
+        $this->app->bind(IframeTemplateRepository::class);
+        $this->app->bind(LanguageRepository::class);
+        $this->app->bind(MigrateOldDataRepository::class);
+        $this->app->bind(PrintPdfTemplateRepository::class);
+        $this->app->bind(ProjectAddressContactPersonRepository::class);
+        $this->app->bind(ProjectAttributeLanguageRepository::class);
+        $this->app->bind(ProjectAttributeRepository::class);
+        $this->app->bind(ProjectCategoryRepository::class);
+        $this->app->bind(ProjectImageRepository::class);
+        $this->app->bind(ProjectParticipatingCompanyInvolvedRepository::class);
+        $this->app->bind(ProjectParticipatingCompanyRepository::class);
+        $this->app->bind(ProjectPropertyRepository::class);
+        $this->app->bind(ProjectRepository::class);
+        $this->app->bind(ProjectTypeOfBuildingRepository::class);
+        $this->app->bind(ProjectTypeOfConstructionRepository::class);
+        $this->app->bind(ProjectTypeOfWorkRepository::class);
+        $this->app->bind(ProjectVideoRepository::class);
+        $this->app->bind(ServiceRepository::class);
+        $this->app->bind(RequestRepository::class);
+        $this->app->bind(TranslationRepository::class);
+        $this->app->bind(TypeOfBuildingLanguageRepository::class);
+        $this->app->bind(TypeOfBuildingRepository::class);
+        $this->app->bind(TypeOfConstructionLanguageRepository::class);
+        $this->app->bind(TypeOfConstructionRepository::class);
+        $this->app->bind(TypeOfWorkLanguageRepository::class);
+        $this->app->bind(TypeOfWorkRepository::class);
+        $this->app->bind(VisitorsRepository::class);
     }
 }
