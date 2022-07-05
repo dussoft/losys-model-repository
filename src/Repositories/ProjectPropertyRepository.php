@@ -61,4 +61,10 @@ class ProjectPropertyRepository extends BaseRepository
     public function getValuesFromProjectAttributeId($attributeIds){
         return ProjectProperty::whereIn('projectAttributeId',$attributeIds)->pluck('value');
     }
+
+    public function getFromProjectAttributeId($projectAttributeId){
+        return ProjectProperty::whereIn('projectAttributeId',$projectAttributeId)->get();
+    }
+    
 }
+

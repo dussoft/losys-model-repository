@@ -106,20 +106,22 @@ class TypeOfWorkRepository extends BaseRepository
         ->get(['type_of_works.*']);
     }
 
-    public function searchFromLanguage($request){
-        $query =  TypeOfWork::where('companyId', $request->companyId)->orderBy('updated_at','desc');
-        if ($request->textSearch) {
-            $search = $request->textSearch;
+    public function searchFromLanguage($companyId, $textSearch, $isSearch ){
+        $query =  TypeOfWork::where('companyId', $companyId)->orderBy('updated_at','desc');
+        if (isset($textSearch)) {
+            $search = $textSearch;
             $typeOfWorkLanguageId = TypeOfWorkLanguage::where('title','LIKE', "%{$search}%")->orderBy('title','ASC')->pluck('typeOfWorkId');
             $query =  $query->whereIn('id', $typeOfWorkLanguageId);
         }
-
-        if ($request->isSearch) {
-            $typeOfWorks =  $query->where('companyId',$request->companyId)->orderBy('updated_at','desc')->get();
+        if ($isSearch) {
+            $typeOfWorks =  $query->where('companyId',$companyId)->orderBy('updated_at','desc')->get();
         } else {
-            $typeOfWorks =  $query->where('companyId', $request->companyId)->orderBy('updated_at','desc')->paginate(50);
+            $typeOfWorks =  $query->where('companyId', $companyId)->orderBy('updated_at','desc')->paginate(50);
         }
-
         return $typeOfWorks;
+    }
+
+    public function getIdsFromCompanyIds($companyIds){
+        return TypeOfWork::whereIn('companyId', $companyIds)->pluck('id');
     }
 }

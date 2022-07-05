@@ -2,7 +2,7 @@
 
 namespace Referenzverwaltung\Models;
 
-use Eloquent as Model;
+use Illuminate\Database\Eloquent as Model;
 use DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**

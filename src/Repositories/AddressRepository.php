@@ -62,17 +62,17 @@ class AddressRepository extends BaseRepository
        return Address::where('companyId', $companyId)->pluck('id');
     }
 
-    public function loadAddresses($request)
+    public function loadAddresses($companyId, $status, $country, $textSearch, $isSearch)
     {
-        $query =  Address::where('companyId', $request->companyId)->orderBy('name','ASC');
-        if ($request->get('status')) {
-            $query = $query->where('status', $request->status);
+        $query =  Address::where('companyId', $companyId)->orderBy('name','ASC');
+        if ($status) {
+            $query = $query->where('status', $status);
         }
-        if ($request->country) {
-            $query = $query->where('country', $request->country);
+        if ($country) {
+            $query = $query->where('country', $country);
         }
-        if ($request->textSearch) {
-            $fullsearch = $request->textSearch;
+        if ($textSearch) {
+            $fullsearch = $textSearch;
             $words = preg_split('/[\ \n\,]+/', $fullsearch);
             foreach($words as $search){
                 $query= $query->where(function($query) use ($search) {
@@ -90,34 +90,34 @@ class AddressRepository extends BaseRepository
                 });
             }
         }
-        if($request->get('isSearch')) {
-            $addresses =  $query->where('companyId', $request->get("companyId"))->orderBy('name','ASC')->get();
+        if($isSearch) {
+            $addresses =  $query->where('companyId', $companyId)->orderBy('name','ASC')->get();
         } else {
-            $addresses =  $query->where('companyId', $request->get("companyId"))->orderBy('name','ASC')->paginate(8);
+            $addresses =  $query->where('companyId', $companyId)->orderBy('name','ASC')->paginate(8);
         }
         return $addresses;
     }
 
-    public function loadUnusedAddresses($request)
+    public function loadUnusedAddresses($companyId, $status, $country, $textSearch, $isSearch)
     {
-        $query =  Address::where('companyId', $request->companyId)->orderBy('name','ASC');
-        if ($request->status) {
-            $query = $query->where('status', $request->status);
+        $query =  Address::where('companyId', $companyId)->orderBy('name','ASC');
+        if ($status) {
+            $query = $query->where('status', $status);
         }
-        if ($request->get('country')) {
-            $query = $query->where('country', $request->country);
+        if ($country) {
+            $query = $query->where('country', $country);
         }
-        if ($request->textSearch) {
-            $search = $request->textSearch;
-            $query =  $query->where('name', 'LIKE', "%{$search}%");
+        if ($textSearch) {
+            $search = $textSearch;
+            $query =  $query->where('name', 'LIKE', "%{$textSearch}%");
         }
-        $prokectId=Project::where('companyId', $request->companyId)->pluck('id');
+        $prokectId=Project::where('companyId', $companyId)->pluck('id');
         $addressId=ProjectParticipatingCompany::whereIn('projectId',$prokectId)->pluck('addressId');
-        if ($request->isSearch) {
-            $addresses =  $query->where('companyId', $request->companyId)
+        if ($isSearch) {
+            $addresses =  $query->where('companyId', $companyId)
             ->whereNotIn('id',$addressId)->orderBy('name','ASC')->get();
         } else {
-            $addresses =  $query->where('companyId', $request->companyId)
+            $addresses =  $query->where('companyId', $companyId)
             ->whereNotIn('id',$addressId)->orderBy('name','ASC')->paginate(8);
         }
         return $addresses;
@@ -126,6 +126,10 @@ class AddressRepository extends BaseRepository
     public function getByCompanyExcludeIds($companyId, $ids, $order="ASC"){
         return Address::where('companyId', $companyId)
         ->whereNotIn('id',$ids)->orderBy('name',$order)->get();
+    }
+
+    public function getIdsByNameAndCompany($companyIds, $search){
+        return Address::whereIn('companyId', $companyIds)->where('name', 'like',"%{$search}%")->pluck('id');
     }
 
     

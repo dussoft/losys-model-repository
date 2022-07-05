@@ -1,9 +1,7 @@
 <?php
 
 namespace Referenzverwaltung\Models;
-use GeoIP;
-use Jenssegers\Agent\Agent;
-use Eloquent as Model;
+use Illuminate\Database\Eloquent as Model;
 
 /**
  * Class Vistors
@@ -87,36 +85,26 @@ class Vistors extends Model
     public static $rules = [
         
     ];
-    function saveVistor($activity='Vistor')
+    function saveVistor($browser, $browser_version, $ip, $dvs, $device_version, $platform,  $location, $country, $city, $state, $root, $language, $https, $lat, $lon, $activity)
     {
-       // Chrome, IE, Safari, Firefox, ...
-       $agent = new Agent();
-       $browser = $agent->browser();
-       // Ubuntu, Windows, OS X, ...
-        $platform = $agent->platform();
-        $dvs = $agent->device();
-       
-        $location = GeoIP::getLocation(request()->ip());
-
        $data=[
-        'ip_address' => request()->ip(),
-        'browser' => $agent->browser(),
+        'ip_address' => $ip,
+        'browser' => $browser,
         'device' => $dvs,
-        'platform' => $agent->platform(),
-        'browser_version' => $agent->version($browser),
-        'device_version' => $agent->version($platform),
-        'current_location' => json_encode(GeoIP::getLocation(request()->ip())->toArray()),
-        'country' => $location['country'],
-        'city' => $location['city'],
-        'state' => $location['state_name'],
-        'root' => $agent->robot(),
-        'language'=>'EN',
-        'https' =>request()->server('HTTP_USER_AGENT'),
-        'lat'=>$location['lat'],
-        'lon'=>$location['lon'],
+        'platform' => $platform,
+        'browser_version' => $browser_version,
+        'device_version' => $device_version,
+        'current_location' => $location,
+        'country' => $country,
+        'city' => $city,
+        'state' => $state,
+        'root' => $root,
+        'language'=>$language,
+        'https' =>$https,
+        'lat'=>$lat,
+        'lon'=>$lon,
         'activity' => $activity
        ];
-
        return Vistors::create($data);
     }
     

@@ -65,5 +65,9 @@ class ProjectParticipatingCompanyInvolvedRepository extends BaseRepository
         return ProjectParticipatingCompanyInvolved::whereIn('participatingCompanyId',$ids)->pluck('typeOfWorkId');
     }
 
+    public function getParticipatingCompanyIdFromTypeOfWorkId($typeWorkLangIds){
+        return ProjectParticipatingCompanyInvolved::whereIn('typeOfWorkId',$typeWorkLangIds)->pluck('participatingCompanyId');
+    }
+
 
 }

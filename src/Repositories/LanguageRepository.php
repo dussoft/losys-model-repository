@@ -55,4 +55,8 @@ class LanguageRepository extends BaseRepository
     public function getShortnames(){
         return Language::orderBy('shortname', 'asc')->pluck("shortname")->toArray();
     }
+
+    public function getByShortname($langShortName){
+        return Language::where('shortName',$langShortName)->first();
+    }
 }

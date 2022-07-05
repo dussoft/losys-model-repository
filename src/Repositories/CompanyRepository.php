@@ -52,13 +52,13 @@ class CompanyRepository extends BaseRepository
         return Company::class;
     }
 
-    public function loadCompanies($request=[])
+    public function loadCompanies($groups=[], $services=[], $companyIds=[], $text_search="", $isSearch=false )
     {
         $groupCompanyIds = [];
         $serviceCompanyIds = [];
         $query =  Company::orderBy('id', 'DESC');
-        if (isset($request->groups) && count($request->groups) > 0) {
-            foreach (GroupCompany::whereIn('groupId', $request->groups)->get() as $groupCompany) {
+        if (isset($groups) && count($groups) > 0) {
+            foreach (GroupCompany::whereIn('groupId', $groups)->get() as $groupCompany) {
                 array_push($groupCompanyIds, $groupCompany->companyId);
             }
             $groupCompanyIds = array_unique($groupCompanyIds);
@@ -66,8 +66,8 @@ class CompanyRepository extends BaseRepository
                 $query = $query->whereIn('id', $groupCompanyIds);
             }
         }
-        if (isset($request->services) && count($request->services) > 0) {
-            foreach (CompanyService::whereIn('serviceId', $request->services)->get() as $companyService) {
+        if (isset($services) && count($services) > 0) {
+            foreach (CompanyService::whereIn('serviceId', $services)->get() as $companyService) {
                 array_push($serviceCompanyIds, $companyService->companyId);
             }
             $serviceCompanyIds = array_unique($serviceCompanyIds);
@@ -75,14 +75,14 @@ class CompanyRepository extends BaseRepository
                 $query = $query->whereIn('id', $serviceCompanyIds);
             }
         }
-        if (isset($request->companyIds) && count($request->companyIds) > 0) {
-            $query = $query->whereIn('id', $request->companyIds);
+        if (isset($companyIds) && count($companyIds) > 0) {
+            $query = $query->whereIn('id', $companyIds);
         }
-        if (isset($request->text_search)) {
-            $search = $request->text_search;
+        if (isset($text_search)) {
+            $search = $text_search;
             $query =  $query->where('name', 'LIKE', "%{$search}%");
         }
-        if (isset($request->isSearch)) {
+        if (isset($isSearch)) {
             $companies =  $query->orderBy('id', 'DESC')->get();
         } else {
             $companies =  $query->orderBy('id', 'DESC')->paginate(999);

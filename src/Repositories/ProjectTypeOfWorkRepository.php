@@ -66,4 +66,8 @@ class ProjectTypeOfWorkRepository extends BaseRepository
     public function getWorkIdsByProjects($projectIds){
         return ProjectTypeOfWork::whereIn('projectId',$projectIds)->pluck('typeOfWorkId');
     }
+
+    public function getProjectIdsFromWorks($works){
+        return ProjectTypeOfWork::whereIn('typeOfWorkId', $works)->pluck('projectId');
+    }
 }

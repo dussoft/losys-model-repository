@@ -82,299 +82,93 @@ class ProjectRepository extends BaseRepository
         return Project::downloadProjectByUrl($url);
     }
 
-    public function projectQueryBuilder($request,$isIframe=false)
-    {
-        $query =  Project::whereNotNull('languageId');
-        if($request->has('lang')){
-            $langShortName=$request->get('lang');
-        }else{
-            $langShortName=app()->getLocale();
-        }
-        $lang=Language::where('shortName',$langShortName)->first();
-        $query->where('languageId',$lang->id);
-        if ($request->has('projectId')) {
-            $query->where('id',$request->get('projectId'));
-        }else{
-            $companyIds = [];
-            $companyId = $request->get('companyId');
-            if ($request->get('members') && count($request->get('members')) > 0) {
-                $memberids = $request->get('members');
-                foreach($memberids as $memberid){
-                    $companyIds[]=$memberid;
+    public function projectQueryBuilder($projectIds=[], $isIframe=false, $yearFrom="", $yearTo="", $cantons=[],$searchIframe="", $textSearch="", $companyIds=[], $languageId=""  ){
+        $query =  Project::where('languageId', $languageId)->whereIn("id", $projectIds);
+        if($textSearch){
+            $words = preg_split('/[\ \n\,]+/', $textSearch);
+            foreach($words as $search){
+                if(!$isIframe){
+                    $query["search"] = $search;
+                    $query->where(function($query) use ($search) {
+                        $query->where('title', 'LIKE',"%{$search}%")
+                                ->orWhere('address', 'LIKE', "%{$search}%")
+                                ->orWhere('zipcode', 'LIKE', "%{$search}%")
+                                ->orWhere('city', 'LIKE', "%{$search}%")
+                                ->orWhere('country', 'LIKE', "%{$search}%")
+                                ->orWhereHas('projectProperties', function ($query) use ($search) {
+                                    $query->where('value', 'LIKE', "%{$search}%")
+                                    ->whereHas('ProjectAttribute', function ($query) use($search){
+                                        $query->where('type', 'textarea')->orWhere('type', 'text');
+                                    });
+                                });
+                    });
                 }
-            }
-            if ($request->get('groups') && count($request->get('groups')) > 0) {
-                $companyIds=GroupCompany::where('groupId',$request->get('groups'))->groupBy('companyId')->pluck('companyId');
-            }
-            if (count($companyIds) > 0) {
-                $query->whereIn('companyId', $companyIds);
-            } else {
-                $query->where('companyId',  $companyId);
-            }
-            if ($request->get('text-search')) {
-
-                $fullsearch = $request->get('text-search');
-                $words = preg_split('/[\ \n\,]+/', $fullsearch);
-                foreach($words as $search){
-                    if(!$isIframe){
-                        $query->where(function($query) use ($search) {
-                            $query->where('title', 'LIKE',"%{$search}%")
-                                    ->orWhere('address', 'LIKE', "%{$search}%")
-                                    ->orWhere('zipcode', 'LIKE', "%{$search}%")
-                                    ->orWhere('city', 'LIKE', "%{$search}%")
-                                    ->orWhere('country', 'LIKE', "%{$search}%")
-                                    ->orWhereHas('projectProperties', function ($query) use ($search) {
-                                        $query->where('value', 'LIKE', "%{$search}%")
-                                        ->whereHas('ProjectAttribute', function ($query) use($search){
+                else{
+                    $query["searchIframe"]=$search;
+                    $query->where(function($query) use ($search) {
+                        $query->where('title', 'LIKE',"%{$search}%")
+                                ->orWhere('address', 'LIKE', "%{$search}%")
+                                ->orWhere('zipcode', 'LIKE', "%{$search}%")
+                                ->orWhere('city', 'LIKE', "%{$search}%")
+                                ->orWhere('country', 'LIKE', "%{$search}%")
+                                ->orWhereHas('projectProperties', function ($query) use ($search) {
+                                    $query->where('value', 'LIKE', "%{$search}%")
+                                    ->whereHas('ProjectAttribute', function ($query) use($search){
+                                        $query->where('view_web', 1)->where(function($query){
                                             $query->where('type', 'textarea')->orWhere('type', 'text');
                                         });
                                     });
+                                });
+                    });
+                }
+            }
+        }
+        
+
+        if(!$isIframe){
+            $query->where(function($query) use ($search) {
+                $query->where('title', 'LIKE',"%{$search}%")
+                        ->orWhere('address', 'LIKE', "%{$search}%")
+                        ->orWhere('zipcode', 'LIKE', "%{$search}%")
+                        ->orWhere('city', 'LIKE', "%{$search}%")
+                        ->orWhere('country', 'LIKE', "%{$search}%")
+                        ->orWhereHas('projectProperties', function ($query) use ($search) {
+                            $query->where('value', 'LIKE', "%{$search}%")
+                            ->whereHas('ProjectAttribute', function ($query) use($search){
+                                $query->where('type', 'textarea')->orWhere('type', 'text');
+                            });
                         });
-                    }
-                    else{
-                        $query->where(function($query) use ($search) {
-                            $query->where('title', 'LIKE',"%{$search}%")
-                                    ->orWhere('address', 'LIKE', "%{$search}%")
-                                    ->orWhere('zipcode', 'LIKE', "%{$search}%")
-                                    ->orWhere('city', 'LIKE', "%{$search}%")
-                                    ->orWhere('country', 'LIKE', "%{$search}%")
-                                    ->orWhereHas('projectProperties', function ($query) use ($search) {
-                                        $query->where('value', 'LIKE', "%{$search}%")
-                                        ->whereHas('ProjectAttribute', function ($query) use($search){
-                                            $query->where('view_web', 1)->where(function($query){
-                                                $query->where('type', 'textarea')->orWhere('type', 'text');
-                                            });
-                                        });
-                                    });
+            });            
+        }
+        else{
+            $query->where(function($query) use ($search) {
+                $query->where('title', 'LIKE',"%{$search}%")
+                        ->orWhere('address', 'LIKE', "%{$search}%")
+                        ->orWhere('zipcode', 'LIKE', "%{$search}%")
+                        ->orWhere('city', 'LIKE', "%{$search}%")
+                        ->orWhere('country', 'LIKE', "%{$search}%")
+                        ->orWhereHas('projectProperties', function ($query) use ($search) {
+                            $query->where('value', 'LIKE', "%{$search}%")
+                            ->whereHas('ProjectAttribute', function ($query) use($search){
+                                $query->where('view_web', 1)->where(function($query){
+                                    $query->where('type', 'textarea')->orWhere('type', 'text');
+                                });
+                            });
                         });
-                    }
-                }
+            });
+        }
 
-            }
-
-            if ($request->has('text-search-company') && $request->get('text-search-company')) {
-                $searchcompany=$request->get('text-search-company');
-                $words = preg_split('/[\ \n\,]+/', $searchcompany);
-                foreach($words as $search){
-                    if(count($companyIds) > 0){
-                        $addressIds =  Address::whereIn('companyId', $companyIds)->where('name', 'like',"%{$search}%")->pluck('id');
-                    }
-                    else{
-                        $addressIds =  Address::where('companyId', $request->get('companyId'))->where('name', 'like',"%{$search}%")->pluck('id');
-                    }
-                    $participatingIds=ProjectParticipatingCompany::whereIn('addressId', $addressIds)->pluck('projectId');
-                    $query->whereIn('id', $participatingIds);
-                }
-            }
-
-            if ($request->has('text-search-work') && $request->get('text-search-work')) {
-                $searchWork=$request->get('text-search-work');
-                $words = preg_split('/[\ \n\,]+/', $searchWork);
-                foreach($words as $search){
-                    if(count($companyIds) > 0){
-                        $ComptypeOfWorkIds=TypeOfWork::whereIn('companyId', $companyIds)->pluck('id');
-                    }
-                    else{
-                        $ComptypeOfWorkIds=TypeOfWork::where('companyId', $request->get('companyId'))->pluck('id');
-                    }
-                    $typeWorkLangIds=TypeOfWorkLanguage::whereIn('typeOfWorkId',$ComptypeOfWorkIds)->where('title', 'like',"%{$search}%")->pluck('typeOfWorkId');
-                    $projectParticipatingCompanyInvolved=ProjectParticipatingCompanyInvolved::whereIn('typeOfWorkId',$typeWorkLangIds)->pluck('participatingCompanyId');
-                    $participatingIds=ProjectParticipatingCompany::whereIn('id', $projectParticipatingCompanyInvolved)->pluck('projectId');
-                    $query->whereIn('id', $participatingIds);
-                }
-            }
-
-            if ($request->get('typeOfConstruction')) {
-                $constructions=$request->get('typeOfConstruction');
-                if (($key = array_search('0', $constructions)) !== false) {
-                    unset($constructions[$key]);
-                }
-                if(count($constructions)>0){
-                    $allconstructions=[];
-                    foreach($constructions as $constr){
-                        $multipleConstr = preg_split('/[\ \n\,]+/', $constr);
-                        foreach($multipleConstr as $singleConstr){
-                            $allconstructions[]=$singleConstr;
-                        }
-                    }
-                    $typeOfContructionIds = ProjectTypeOfContruction::whereIn('typeOfContructionId', $allconstructions)->pluck('projectId');
-                    $query->whereIn('id', $typeOfContructionIds);
-                }
-            }
-
-            if ($request->get('typeOfBuilding')) {
-                $buildings=$request->get('typeOfBuilding');
-                if (($key = array_search('0', $buildings)) !== false) {
-                    unset($buildings[$key]);
-                }
-                if(count($buildings)>0){
-                    $allbuild=[];
-                    foreach($buildings as $build){
-                        $multipleBuild = preg_split('/[\ \n\,]+/', $build);
-                        foreach($multipleBuild as $singleBuild){
-                            $allbuild[]=$singleBuild;
-                        }
-                    }
-                    $typeOfBuildingIds = ProjectTypeOfBuilding::whereIn('typeOfBuildingId', $allbuild)->pluck('projectId');
-                    $query->whereIn('id', $typeOfBuildingIds);
-                }
-            }
-
-            if ($request->get('canton')) {
-                $cantons=$request->get('canton');
-                if (($key = array_search('0', $cantons)) !== false) {
-                    unset($cantons[$key]);
-                }
-                if(count($cantons)>0){
-                    $query->whereIn('canton', $cantons);
-                }
-            }
-            if (intval($request->get('year_from')) > 0) {
-                $query->where('yearOfCompletion','>=', $request->get('year_from'));
-            }
-
-            if (intval($request->get('year_to')) > 0) {
-                $query->where('yearOfCompletion','<=', $request->get('year_to'));
-            }
-
-            if ($request->get('typeOfWork')) {
-                $works=$request->get('typeOfWork');
-                if (($key = array_search('0', $works)) !== false) {
-                    unset($works[$key]);
-                }
-                if(count($works)>0){
-                    $allworks=[];
-                    foreach($works as $wrk){
-                        $multipleWrk = preg_split('/[\ \n\,]+/', $wrk);
-                        foreach($multipleWrk as $singleWrk){
-                            $allworks[]=$singleWrk;
-                        }
-                    }
-                    $projectTypeOfWorkprojectIds = ProjectTypeOfWork::whereIn('typeOfWorkId', $allworks)->pluck('projectId');
-                    $query->whereIn('id', $projectTypeOfWorkprojectIds);
-                }
-            }
-
-            if ($request->get('category')) {
-                $categories=$request->get('category');
-                if (($key = array_search('0', $categories)) !== false) {
-                    unset($categories[$key]);
-                }
-                if(count($categories)>0){
-                    $allCateg=[];
-                    foreach($categories as $categ){
-                        $multipleCateg = preg_split('/[\ \n\,]+/', $categ);
-                        foreach($multipleCateg as $singleCateg){
-                            $allCateg[]=$singleCateg;
-                        }
-                    }
-                    $projectProjectCategoryIds = ProjectCategory::whereIn('categoryId', $allCateg)->pluck('projectId');
-                    $query->whereIn('id', $projectProjectCategoryIds);
-                }
-            }
-
-            if($request->has('employeeAttribute')){
-
-                if(!empty($request->get('employeeAttribute'))){
-                    $employeeAttributes=explode(",",$request->get('employeeAttribute'));
-                    $projectIds=[];
-                    foreach($employeeAttributes as $employeeAttribute){
-                        $valuesInAttribute=explode("_",$employeeAttribute);
-                        $employeeAttributeIds=array_slice($valuesInAttribute, 1, count($valuesInAttribute)-2, true);
-                        $employeeAttributeValues=explode("-", $valuesInAttribute[count($valuesInAttribute)-1]);
-
-                        if($employeeAttributeIds){
-                            $EmpprojectPropertyIds=[];
-                            $EmprojectProperties = ProjectProperty::whereIn('projectAttributeId',$employeeAttributeIds)->get();
-                            $EmprojectProperties=$EmprojectProperties->whereIn('value', $employeeAttributeValues);
-                            foreach( $EmprojectProperties as  $projectProperty){
-                                $EmpprojectPropertyIds[]=$projectProperty->projectId;
-                            }
-                            $query->whereIn('id', $EmpprojectPropertyIds);
-                        }
-                    }
-                }
-
-            }
-
-            $listattributeValue=[];
-            $listattributeIds=[];
-
-            if ( !empty( $request->get('attributeValue') )) {
-                $indexAttrib=0;
-                foreach($request->get('attributeValue') as $attribute){
-                    if(isset($request->get('attributeIds')[$indexAttrib]) && isset($request->get('attributeValue')[$indexAttrib]) && $request->get('attributeValue')[$indexAttrib] !=""){
-                        $attributeId=$request->get('attributeIds')[$indexAttrib];
-                        if($attribute=="LosysNumberAttribute"){
-                            if(($request->get('attributeId-from_'.$attributeId) !==null && intval($request->get('attributeId-from_'.$attributeId)) >0)  || ($request->get('attributeId-to_'.$attributeId) !==null && intval($request->get('attributeId-to_'.$attributeId)) > 0) ){
-                                $listattributeValue[]=$attribute;
-                                $listattributeIds[]=$attributeId;
-                            }
-                        }
-                        else{
-                            $listattributeValue[]=$attribute;
-                            $listattributeIds[]=$attributeId;
-                        }
-                    }
-                    $indexAttrib++;
-                }
-            }
-
-            if (isset($listattributeValue) && count($listattributeValue) > 0) {
-                $projectPropertyIds=[];
-                $i=0;
-                $j=0;
-                foreach($listattributeValue as $attribute){
-                    if(isset($listattributeIds[$i]) && isset($attribute) && $attribute !="" ){
-                        $splitAttr=explode("_",$listattributeIds[$i]);
-                        $projectProperties = ProjectProperty::whereIn('projectAttributeId',$splitAttr)->get();
-
-                        if($attribute!="LosysNumberAttribute"){
-
-                            $projectProperties = $projectProperties->where('value', $attribute);
-                        }
-                        else{
-                            if($request->get('attributeId-from_'.$listattributeIds[$i]) !==null && intval($request->get('attributeId-from_'.$listattributeIds[$i])) >0){
-                                $projectProperties = $projectProperties->where('value','>=', $request->get('attributeId-from_'.$listattributeIds[$i]));
-                            }
-                            if(($request->get('attributeId-to_'.$listattributeIds[$i]) !==null && intval($request->get('attributeId-to_'.$listattributeIds[$i])) >0)){
-                                $projectProperties = $projectProperties->where('value','<=', $request->get('attributeId-to_'.$listattributeIds[$i]));
-                            }
-                        }
-
-                        if($j==0){
-                            foreach( $projectProperties as  $projectProperty){
-                                $projectPropertyIds[]=$projectProperty->projectId;
-                            }
-                        }
-                        else{
-                            $newIds=[];
-                            foreach( $projectProperties as  $projectProperty){
-                                $newIds[]=$projectProperty->projectId;
-                            }
-
-                            $count=0;
-                            foreach($projectPropertyIds as $keptId){
-                                if(!in_array($keptId,$newIds))
-                                {
-                                    unset($projectPropertyIds[$count]);
-                                }
-                                $count++;
-                            }
-                        }
-                        $j++;
-                    }
-                    $i++;
-                }
-                $query->whereIn('id', $projectPropertyIds);
-            }
-            if($isIframe){
-                $query->where(function($query) {
-                    $query->where('status', 1)->orWhere('status', 'on');
-                });
-
-            }
-            $query->where('languageId',$lang->id);
+        if ($cantons) 
+            $query->whereIn("canton", $cantons);
+        if($yearFrom)
+            $query->where('yearOfCompletion','>=', $yearFrom);
+        if($yearTo)
+            $query->where('yearOfCompletion','<=', $yearTo);  
+        
+        if($isIframe){
+            $query->where(function($query) {
+                $query->where('status', 1)->orWhere('status', 'on');
+            });
         }
         return $query->with('projectImages')
             ->orderBy('yearOfCompletion', 'DESC')
@@ -382,14 +176,13 @@ class ProjectRepository extends BaseRepository
             ->get();
     }
 
-    public function getFilters($request){
-        function filters($request){
-            if ($request->get('members') && count($request->get('members')) > 0) {
-                $companyId = $request->get('members');
-                $companyId[]= $request->get('companyId') ;
+    public function getFilters($members=[], $companyId=""){
+        
+            if ($members && count($members) > 0) {
+                $companyId = $members;
+                $companyId[]= $companyId ;
                 $hasMembers=true;
             }else{
-                $companyId = $request->get('companyId');
                 $hasMembers=false;
             }
     
@@ -404,8 +197,8 @@ class ProjectRepository extends BaseRepository
             $filterYearFrom[]=['id'=>0,'title'=>trans('language.project.search.year_from')];
             $filterToFrom[]=['id'=>0,'title'=>trans('language.project.search.year_to')];
     
-            if($request->get('members') && count($request->get('members')) > 0){
-                $filterAttributes= ProjectProperty::dataFilter($request->get('members'), true, false);
+            if($members && count($members) > 0){
+                $filterAttributes= ProjectProperty::dataFilter($members, true, false);
             }
             else{
                 $filterAttributes= ProjectProperty::dataFilter();
@@ -532,12 +325,9 @@ class ProjectRepository extends BaseRepository
     
                 $filterToFrom[]=['id'=>$year,'title'=>$year];
             }
-    
-    
-            $companyId = $request->get('companyId') ;
+            $companyId = $companyId;
             $members=[];
             array_push($members,$companyId);
-    
             foreach(GroupCompany::where('companyId',$companyId)->get() as $groupCompany){
                 $companiesIds=GroupCompany::where('groupId',$groupCompany->groupId)->groupBy('companyId')->pluck('companyId');
                 $companies=Company::whereIn('id',$companiesIds)->groupBy('id')->get();
@@ -578,7 +368,7 @@ class ProjectRepository extends BaseRepository
               'filterToFrom'=>$filterToFrom,
               'printHeaderMembers'=>$printHeaderMembers,
               'filterAttributes'=>$filterAttributes];
-        }
+        
     }
 
     public function getByCompanyIdsAndId($companyIds, $id){

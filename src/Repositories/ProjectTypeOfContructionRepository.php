@@ -58,4 +58,8 @@ class ProjectTypeOfContructionRepository extends BaseRepository
     public function getConstructionIdsByProject($projectId){
         return ProjectTypeOfContruction::where('projectId', $projectId)->pluck('typeOfContructionId');
     }
+
+    public function getProjectIdsByConstructions($constructionIds){
+        return ProjectTypeOfContruction::whereIn('typeOfContructionId', $constructionIds)->pluck('projectId');
+    }
 }

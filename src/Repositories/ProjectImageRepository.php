@@ -49,7 +49,7 @@ class ProjectImageRepository extends BaseRepository
     }
 
     public function getByProjectId($projectId, $isMain){
-        return ProjectImage::where('projectId',$request->get('projectId'))
+        return ProjectImage::where('projectId',$projectId)
         ->where('isMainImage',$isMain)
         ->orderBy('id','ASC')->get();
     }
