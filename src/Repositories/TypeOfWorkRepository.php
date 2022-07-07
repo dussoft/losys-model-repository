@@ -106,7 +106,7 @@ class TypeOfWorkRepository extends BaseRepository
         ->get(['type_of_works.*']);
     }
 
-    public function searchFromLanguage($companyId, $textSearch, $isSearch ){
+    public function searchFromLanguage($companyId, $textSearch, $isSearch=false ){
         $query =  TypeOfWork::where('companyId', $companyId)->orderBy('updated_at','desc');
         if (isset($textSearch)) {
             $search = $textSearch;
