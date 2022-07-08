@@ -38,11 +38,11 @@ class CompanyRepository extends BaseRepository
     }
 
     public function getByCompanyId($companyId){
-        return CompanyLanguage::where('companyId',$id)->get();
+        return CompanyLanguage::where('companyId',$companyId)->get();
     }
 
     public function getByLanguageId($languageId){
-        return CompanyLanguage::where('languageId',$id)->get();
+        return CompanyLanguage::where('languageId',$languageId)->get();
     }
     
 }
