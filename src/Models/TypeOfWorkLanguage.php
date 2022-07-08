@@ -103,7 +103,7 @@ class TypeOfWorkLanguage extends Model
             ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
             ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
             ->where('type_of_works.companyId', '=', $companyId)
-            ->where('type_of_work_langauages.title', 'Like',  "%{$text}%")
+            ->where('type_of_work_langauages.title', 'Like',  "%". $this->escape_like($text) ."%")
             ->where('languages.shortName', $lang)
             ->orderBy('type_of_work_langauages.title','DESC')
             ->get();
@@ -112,12 +112,20 @@ class TypeOfWorkLanguage extends Model
             ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
             ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
             ->where('type_of_works.companyId', '=', $companyId)
-            ->where('type_of_work_langauages.title', 'Like', "%{$text}%")
+            ->where('type_of_work_langauages.title', 'Like', "%". $this->escape_like($text) ."%")
             ->orderBy('type_of_work_langauages.title','DESC')
             ->get();     
         }
         return $typeOfWorkLang ;
     }
 
+    public function escape_like(string $value, string $char = '\\'): string
+    {
+        return str_replace(
+            [$char, '%', '_'],
+            [$char.$char, $char.'%', $char.'_'],
+            $value
+        );
+    }
     
 }

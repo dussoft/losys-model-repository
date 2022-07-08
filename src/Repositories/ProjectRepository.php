@@ -86,7 +86,8 @@ class ProjectRepository extends BaseRepository
         $query =  Project::where('languageId', $languageId)->whereIn("id", $projectIds);
         if($textSearch){
             $words = preg_split('/[\ \n\,]+/', $textSearch);
-            foreach($words as $search){
+            foreach($words as $wrd){
+                $search = $this->escape_like($wrd);
                 if(!$isIframe){
                     $query["search"] = $search;
                     $query->where(function($query) use ($search) {

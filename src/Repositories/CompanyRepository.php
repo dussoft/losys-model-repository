@@ -80,7 +80,7 @@ class CompanyRepository extends BaseRepository
         }
         if (isset($text_search)) {
             $search = $text_search;
-            $query =  $query->where('name', 'LIKE', "%{$search}%");
+            $query =  $query->where('name', 'LIKE', "%". $this->escape_like($search) ."%");
         }
         if (isset($isSearch)) {
             $companies =  $query->orderBy('id', 'DESC')->get();

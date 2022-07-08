@@ -110,7 +110,7 @@ class TypeOfWorkRepository extends BaseRepository
         $query =  TypeOfWork::where('companyId', $companyId)->orderBy('updated_at','desc');
         if (isset($textSearch)) {
             $search = $textSearch;
-            $typeOfWorkLanguageId = TypeOfWorkLanguage::where('title','LIKE', "%{$search}%")->orderBy('title','ASC')->pluck('typeOfWorkId');
+            $typeOfWorkLanguageId = TypeOfWorkLanguage::where('title','LIKE', "%". $this->escape_like($search) ."%")->orderBy('title','ASC')->pluck('typeOfWorkId');
             $query =  $query->whereIn('id', $typeOfWorkLanguageId);
         }
         if ($isSearch) {

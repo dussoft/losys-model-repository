@@ -67,7 +67,7 @@ class TypeOfWorkLanguageRepository extends BaseRepository
     }
 
     public function searchWorkids($search){
-        return TypeOfWorkLanguage::where('title','LIKE', "%{$search}%")->orderBy('title','ASC')->pluck('typeOfWorkId');
+        return TypeOfWorkLanguage::where('title','LIKE', "%". $this->escape_like($search) ."%")->orderBy('title','ASC')->pluck('typeOfWorkId');
     }
 
     public function search($text){
@@ -83,7 +83,7 @@ class TypeOfWorkLanguageRepository extends BaseRepository
     }
 
     public function getTypeOfWorkIdFromIdsAndSearch($ComptypeOfWorkIds, $search){
-        TypeOfWorkLanguage::whereIn('typeOfWorkId',$ComptypeOfWorkIds)->where('title', 'like',"%{$search}%")->pluck('typeOfWorkId');
+        TypeOfWorkLanguage::whereIn('typeOfWorkId',$ComptypeOfWorkIds)->where('title', 'like',"%". $this->escape_like($search) ."%")->pluck('typeOfWorkId');
     }
     
 }
