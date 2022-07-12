@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Address;
 
 /**
  * Class AddressRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 4:50 pm UTC
 */
 
@@ -75,7 +74,7 @@ class AddressRepository extends BaseRepository
             $fullsearch = $textSearch;
             $words = preg_split('/[\ \n\,]+/', $fullsearch);
             foreach($words as $wrd){
-                $search = $this->escape_like($wrd);
+                $search = BaseRepository::escape_like($wrd);
                 $query= $query->where(function($query) use ($search) {
                     $query=$query->where('name', 'LIKE',"%{$search}%")
                             ->orWhere('address', 'LIKE', "%{$search}%")
@@ -110,7 +109,7 @@ class AddressRepository extends BaseRepository
         }
         if ($textSearch) {
             $search = $textSearch;
-            $query =  $query->where('name', 'LIKE', "%". $this->escape_like($textSearch) ."%");
+            $query =  $query->where('name', 'LIKE', "%" . BaseRepository::escape_like($textSearch) . "%");
         }
         $prokectId=Project::where('companyId', $companyId)->pluck('id');
         $addressId=ProjectParticipatingCompany::whereIn('projectId',$prokectId)->pluck('addressId');
@@ -130,6 +129,7 @@ class AddressRepository extends BaseRepository
     }
 
     public function getIdsByNameAndCompany($companyIds, $search){
-        return Address::whereIn('companyId', $companyIds)->where('name', 'like',"%". $this->escape_like($search) ."%")->pluck('id');
+        return Address::whereIn('companyId', $companyIds)->where('name', 'like', "%" . BaseRepository::escape_like(
+                                                                           $search) . "%")->pluck('id');
     }
 }

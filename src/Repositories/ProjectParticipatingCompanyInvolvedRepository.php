@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectParticipatingCompanyInvolved;
 
 /**
  * Class ProjectParticipatingCompanyInvolvedRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 21, 2020, 8:18 am UTC
 */
 

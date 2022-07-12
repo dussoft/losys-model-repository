@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Country;
 
 /**
  * Class CountryRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version June 3, 2021, 12:36 pm UTC
 */
 

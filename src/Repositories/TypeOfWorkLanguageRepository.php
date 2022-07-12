@@ -1,13 +1,13 @@
 <?php
 
 namespace Referenzverwaltung\Repositories;
+
 use Illuminate\Support\Facades\DB;
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfWorkLanguage;
 
 /**
  * Class TypeOfWorkLanguageRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 3:55 pm UTC
 */
 
@@ -67,7 +67,7 @@ class TypeOfWorkLanguageRepository extends BaseRepository
     }
 
     public function searchWorkids($search){
-        return TypeOfWorkLanguage::where('title','LIKE', "%". $this->escape_like($search) ."%")->orderBy('title','ASC')->pluck('typeOfWorkId');
+        return TypeOfWorkLanguage::where('title','LIKE', "%" . BaseRepository::escape_like($search) . "%")->orderBy('title', 'ASC')->pluck('typeOfWorkId');
     }
 
     public function search($text){
@@ -83,7 +83,8 @@ class TypeOfWorkLanguageRepository extends BaseRepository
     }
 
     public function getTypeOfWorkIdFromIdsAndSearch($ComptypeOfWorkIds, $search){
-        TypeOfWorkLanguage::whereIn('typeOfWorkId',$ComptypeOfWorkIds)->where('title', 'like',"%". $this->escape_like($search) ."%")->pluck('typeOfWorkId');
+        TypeOfWorkLanguage::whereIn('typeOfWorkId',$ComptypeOfWorkIds)->where('title', 'like', "%" . BaseRepository::escape_like(
+                                                                                         $search) . "%")->pluck('typeOfWorkId');
     }
     
 }

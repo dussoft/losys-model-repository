@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\DefaultTypeOfWork;
 
 /**
  * Class DefaultTypeOfWorkRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version February 17, 2021, 7:47 am UTC
 */
 

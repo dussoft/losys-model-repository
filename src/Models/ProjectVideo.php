@@ -2,12 +2,12 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class ProjectVideo
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 21, 2020, 8:00 am UTC
  *
  * @property integer $projectId

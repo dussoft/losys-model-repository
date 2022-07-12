@@ -2,7 +2,6 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Error;
 
 class ErrorRepository extends BaseRepository

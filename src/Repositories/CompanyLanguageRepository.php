@@ -2,16 +2,15 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\CompanyLanguage;
 
 /**
- * Class CompanyRepository
- * @package App\Repositories
+ * Class CompanyLanguageRepository
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 3:32 pm UTC
 */
 
-class CompanyRepository extends BaseRepository
+class CompanyLanguageRepository extends BaseRepository
 {
     /**
      * @var array

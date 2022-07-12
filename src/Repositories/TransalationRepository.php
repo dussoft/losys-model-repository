@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Transalation;
 
 /**
  * Class TransalationRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 2:33 pm UTC
 */
 

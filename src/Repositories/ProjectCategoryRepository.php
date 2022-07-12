@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectCategory;
 
 /**
  * Class ProjectCategoryRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 1, 2021, 1:23 pm UTC
 */
 

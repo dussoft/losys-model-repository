@@ -2,13 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * Class DefaultTypeOfBuildingLanguage
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version February 17, 2021, 8:55 am UTC
  *
  * @property integer $typeOfBuildingId

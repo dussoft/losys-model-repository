@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectTypeOfBuilding;
 
 /**
  * Class ProjectTypeOfBuildingRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version February 18, 2021, 8:19 am UTC
 */
 

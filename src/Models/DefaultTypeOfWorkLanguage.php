@@ -2,12 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 /**
  * Class DefaultTypeOfWorkLanguage
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version February 17, 2021, 7:49 am UTC
  *
  * @property integer $typeOfWorkId

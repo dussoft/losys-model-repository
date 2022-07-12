@@ -2,14 +2,14 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class CompanyContactPerson
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 4:57 pm UTC
  *
- * @property \App\Models\Company $company
+ * @property \Referenzverwaltung\Models\Company $company
  * @property string $firstName
  * @property string $lastName
  * @property string $function

@@ -2,16 +2,18 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Referenzverwaltung\Repositories\BaseRepository;
+
 /**
  * Class TypeOfWorkLanguage
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 3:55 pm UTC
  *
- * @property \App\Models\Language $languageid
- * @property \App\Models\typeOfWorkId $typeofworkid
+ * @property \Referenzverwaltung\Models\Language $languageid
+ * @property \Referenzverwaltung\Models\typeOfWorkId $typeofworkid
  * @property integer $typeOfWorkId
  * @property integer $languageId
  * @property string $title
@@ -58,7 +60,7 @@ class TypeOfWorkLanguage extends Model
      **/
     public function languageid()
     {
-        return $this->belongsTo(\App\Models\Language::class, 'languageId', 'languageId');
+        return $this->belongsTo(Language::class, 'languageId', 'languageId');
     }
 
     /**
@@ -66,10 +68,10 @@ class TypeOfWorkLanguage extends Model
      **/
     public function typeofwork()
     {
-        return $this->belongsTo(\App\Models\TypeOfWork::class, 'typeOfWorkId', 'typeOfWorkId');
+        return $this->belongsTo(TypeOfWork::class, 'typeOfWorkId', 'typeOfWorkId');
     }
 
-    public static function translate($typeOfWorkId, $lang=en)
+    public static function translate($typeOfWorkId, $lang = 'en')
     {
        
         $typeOfWorkLang = DB::table('type_of_work_langauages')
@@ -91,7 +93,6 @@ class TypeOfWorkLanguage extends Model
                 ->orderBy('languages.isDefault', 'DESC')
                 
                 ->first();
-                
         }
 
         return $typeOfWorkLang ;
@@ -103,29 +104,21 @@ class TypeOfWorkLanguage extends Model
             ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
             ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
             ->where('type_of_works.companyId', '=', $companyId)
-            ->where('type_of_work_langauages.title', 'Like',  "%". $this->escape_like($text) ."%")
+            ->where('type_of_work_langauages.title', 'Like',  "%". BaseRepository::escape_like($text) ."%")
             ->where('languages.shortName', $lang)
             ->orderBy('type_of_work_langauages.title','DESC')
             ->get();
+
         if(!$typeOfWorkLang){
             $typeOfWorkLang = DB::table('type_of_work_langauages')
             ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
             ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
             ->where('type_of_works.companyId', '=', $companyId)
-            ->where('type_of_work_langauages.title', 'Like', "%". $this->escape_like($text) ."%")
+            ->where('type_of_work_langauages.title', 'Like', "%". BaseRepository::escape_like($text) ."%")
             ->orderBy('type_of_work_langauages.title','DESC')
             ->get();     
         }
+
         return $typeOfWorkLang ;
     }
-
-    public function escape_like(string $value, string $char = '\\'): string
-    {
-        return str_replace(
-            [$char, '%', '_'],
-            [$char.$char, $char.'%', $char.'_'],
-            $value
-        );
-    }
-    
 }

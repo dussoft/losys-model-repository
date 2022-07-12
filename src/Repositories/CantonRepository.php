@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Canton;
 
 /**
  * Class CantonRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version June 3, 2021, 11:21 am UTC
 */
 

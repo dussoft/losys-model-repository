@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectImage;
 
 /**
  * Class ProjectImageRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 21, 2020, 7:58 am UTC
 */
 

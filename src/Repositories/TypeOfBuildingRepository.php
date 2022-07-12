@@ -2,7 +2,6 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfBuilding;
 use Referenzverwaltung\Models\DefaultTypeOfBuilding;
 use Referenzverwaltung\Models\TypeOfBuildingLanguage;
@@ -10,7 +9,7 @@ use Referenzverwaltung\Models\DefaultTypeOfBuildingLanguage;
 
 /**
  * Class TypeOfBuildingRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 3:59 pm UTC
 */
 

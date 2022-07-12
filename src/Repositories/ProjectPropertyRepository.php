@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectProperty;
 
 /**
  * Class ProjectPropertyRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 21, 2020, 8:13 am UTC
 */
 

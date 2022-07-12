@@ -2,14 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use App\User;
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * Class GroupCompany
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version January 6, 2021, 9:22 am UTC
  *
  * @property integer $group_id

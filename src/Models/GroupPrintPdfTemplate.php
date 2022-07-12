@@ -2,13 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * Class PrintPdfTemplate
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version July 26, 2021, 1:40 pm UTC
  *
  * @property string $title

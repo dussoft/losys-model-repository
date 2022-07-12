@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\IframeTemplate;
 
 /**
  * Class IframeTemplateRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version August 1, 2021, 10:25 am UTC
 */
 

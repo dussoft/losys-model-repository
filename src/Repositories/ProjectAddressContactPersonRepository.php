@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectAddressContactPerson;
 
 /**
  * Class ProjectAddressContactPersonRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version March 24, 2021, 6:42 pm UTC
 */
 

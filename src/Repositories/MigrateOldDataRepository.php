@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\MigrateOldData;
 
 /**
  * Class MigrateOldDataRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version April 27, 2021, 7:50 am UTC
 */
 

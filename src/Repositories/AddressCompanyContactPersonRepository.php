@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\AddressCompanyContactPerson;
 
 /**
  * Class AddressCompanyContactPersonRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version January 26, 2021, 5:07 pm UTC
 */
 
@@ -59,6 +58,6 @@ class AddressCompanyContactPersonRepository extends BaseRepository
     }
 
     public function getByAddressId($addressId){
-        return AddressCompanyContactPerson::where('addressId',$addressIds)->get();
+        return AddressCompanyContactPerson::where('addressId',$addressId)->get();
     }
 }

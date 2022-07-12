@@ -2,13 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * Class CompanyService
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version January 7, 2021, 10:50 am UTC
  *
  * @property integer $companyId
@@ -54,7 +54,7 @@ class CompanyService extends Model
 
     public function company()
     {
-        return $this->belongsTo(\Referenzverwaltung\Models\Company::class, 'companyId');
+        return $this->belongsTo(Company::class, 'companyId');
     }
 
     /**
@@ -62,7 +62,7 @@ class CompanyService extends Model
      **/
     public function service()
     {
-        return $this->belongsTo(\Referenzverwaltung\Models\Service::class, 'serviceId');
+        return $this->belongsTo(Service::class, 'serviceId');
     }
 
     public static function data()

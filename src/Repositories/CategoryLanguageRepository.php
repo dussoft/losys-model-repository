@@ -2,12 +2,12 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 use Referenzverwaltung\Models\CategoryLanguage;
 
 /**
  * Class CategoryLanguageRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version November 23, 2021, 5:09 pm UTC
 */
 
@@ -57,6 +57,6 @@ class CategoryLanguageRepository extends BaseRepository
     }
 
     public function translate($id, $lang){
-        return CategoryLanguage::translate($projectCategory->id, $lang);
+        return CategoryLanguage::translate($id, $lang);
     }
 }

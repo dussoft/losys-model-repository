@@ -3,12 +3,11 @@
 namespace Referenzverwaltung\Repositories;
 use Illuminate\Support\Facades\DB;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfBuildingLanguage;
 
 /**
  * Class TypeOfBuildingLanguageRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 4:07 pm UTC
 */
 

@@ -2,13 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * Class Canton
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version June 3, 2021, 11:21 am UTC
  *
  * @property string $short_name

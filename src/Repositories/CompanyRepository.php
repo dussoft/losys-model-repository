@@ -2,18 +2,13 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Company;
 use Referenzverwaltung\Models\GroupCompany;
 use Referenzverwaltung\Models\CompanyService;
-use Referenzverwaltung\Models\DefaultTypeOfWork;
-use Referenzverwaltung\Models\DefaultTypeOfWorkLanguage;
-use Referenzverwaltung\Models\TypeOfWork;
-use Referenzverwaltung\Models\TypeOfWorkLanguage;
 
 /**
  * Class CompanyRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 3:32 pm UTC
 */
 
@@ -80,7 +75,7 @@ class CompanyRepository extends BaseRepository
         }
         if (isset($text_search)) {
             $search = $text_search;
-            $query =  $query->where('name', 'LIKE', "%". $this->escape_like($search) ."%");
+            $query =  $query->where('name', 'LIKE', "%" . BaseRepository::escape_like($search) . "%");
         }
         if (isset($isSearch)) {
             $companies =  $query->orderBy('id', 'DESC')->get();

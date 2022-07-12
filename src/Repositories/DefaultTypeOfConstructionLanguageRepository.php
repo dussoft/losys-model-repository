@@ -2,9 +2,8 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
+use Illuminate\Support\Facades\DB;
 use Referenzverwaltung\Models\DefaultTypeOfConstructionLanguage;
-
 
 class DefaultTypeOfConstructionLanguageRepository extends BaseRepository
 {

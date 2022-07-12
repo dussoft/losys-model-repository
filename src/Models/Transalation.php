@@ -2,11 +2,11 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Transalation
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 2:33 pm UTC
  *
  * @property \Illuminate\Database\Eloquent\Collection $languages

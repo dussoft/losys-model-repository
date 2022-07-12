@@ -2,16 +2,17 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
-use DB;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
+
 /**
  * Class CompanyEmployee
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 4:28 pm UTC
  *
- * @property \App\Models\User $user
- * @property \App\Models\Company $company
+ * @property \Referenzverwaltung\Models\User $user
+ * @property \Referenzverwaltung\Models\Company $company
  * @property integer $status
  * @property integer $firstName
  * @property integer $lastName
@@ -40,24 +41,8 @@ class CompanyEmployeeLanguage extends Model
         'deleted_by'
     ];
 
-    /**
-     * The attributes that should be casted to native types.
-     *
-     * @var array
-     */
- 
-
-    /**
-     * Validation rules
-     *
-     * @var array
-     */
-
-
     public static function translate($employeId, $lang="en")
     {
-       
-        
         $categoryLang = DB::table('employee_langauages')
         //  ->join('users', 'users.id', '=', 'employee_langauages.employeId')
         ->join('languages', 'languages.id', '=', 'employee_langauages.languageId')

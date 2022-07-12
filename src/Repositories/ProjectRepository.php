@@ -2,15 +2,10 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
+use Referenzverwaltung\Models\Company;
 use Referenzverwaltung\Models\Project;
-use Referenzverwaltung\Models\Language;
 use Referenzverwaltung\Models\GroupCompany;
-use Referenzverwaltung\Models\Address;
-use Referenzverwaltung\Models\ProjectParticipatingCompany;
-use Referenzverwaltung\Models\TypeOfWork;
 use Referenzverwaltung\Models\TypeOfWorkLanguage;
-use Referenzverwaltung\Models\ProjectParticipatingCompanyInvolved;
 use Referenzverwaltung\Models\ProjectTypeOfContruction;
 use Referenzverwaltung\Models\ProjectTypeOfBuilding;
 use Referenzverwaltung\Models\ProjectTypeOfWork;
@@ -20,9 +15,10 @@ use Referenzverwaltung\Models\TypeOfConstructionLanguage;
 use Referenzverwaltung\Models\TypeOfBuildingLanguage;
 use Referenzverwaltung\Models\CategoryLanguage;
 use Referenzverwaltung\Models\Canton;
+
 /**
  * Class ProjectRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 5:02 pm UTC
 */
 
@@ -87,7 +83,7 @@ class ProjectRepository extends BaseRepository
         if($textSearch){
             $words = preg_split('/[\ \n\,]+/', $textSearch);
             foreach($words as $wrd){
-                $search = $this->escape_like($wrd);
+                $search = BaseRepository::escape_like($wrd);
                 if(!$isIframe){
                     $query["search"] = $search;
                     $query->where(function($query) use ($search) {
@@ -326,7 +322,6 @@ class ProjectRepository extends BaseRepository
     
                 $filterToFrom[]=['id'=>$year,'title'=>$year];
             }
-            $companyId = $companyId;
             $members=[];
             array_push($members,$companyId);
             foreach(GroupCompany::where('companyId',$companyId)->get() as $groupCompany){

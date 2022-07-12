@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectVideo;
 
 /**
  * Class ProjectVideoRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 21, 2020, 8:00 am UTC
 */
 

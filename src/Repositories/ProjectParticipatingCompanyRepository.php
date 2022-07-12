@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\ProjectParticipatingCompany;
 
 /**
  * Class ProjectParticipatingCompanyRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 21, 2020, 8:15 am UTC
 */
 
@@ -76,7 +75,7 @@ class ProjectParticipatingCompanyRepository extends BaseRepository
     }
 
     public function getIdsFromProjects($projectIds){
-        return ProjectParticipatingCompany::whereIn('projectId',$prokectIds)->pluck('id');
+        return ProjectParticipatingCompany::whereIn('projectId',$projectIds)->pluck('id');
     }
 
     public function getByAddressId($addressId){

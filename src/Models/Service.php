@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models;
+namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Service
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 3:05 pm UTC
  *
  * @property string $name

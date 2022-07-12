@@ -2,12 +2,12 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class DefaultTypeOfConstructionLanguage
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version February 17, 2021, 10:41 am UTC
  *
  * @property integer $typeOfConstrationId

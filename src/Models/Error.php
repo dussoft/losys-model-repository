@@ -2,11 +2,11 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 
 /**
- * Class Service
- * @package App\Models
+ * Class Error
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 3:05 pm UTC
  *
  * @property string $name

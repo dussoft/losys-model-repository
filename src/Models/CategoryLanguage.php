@@ -2,12 +2,12 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class CategoryLanguage
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version November 23, 2021, 5:09 pm UTC
  *
  * @property integer $categoryId

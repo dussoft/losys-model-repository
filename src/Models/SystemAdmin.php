@@ -2,15 +2,15 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class SystemAdmin
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 2:48 pm UTC
  *
- * @property \App\Models\User $user
+ * @property \Referenzverwaltung\Models\User $user
  * @property integer $userId
  * @property string $firstName
  * @property string $lastName
@@ -74,6 +74,6 @@ class SystemAdmin extends Model
      **/
     public function user()
     {
-        return $this->hasOne(\App\Models\User::class, 'userId');
+        return $this->hasOne(\Referenzverwaltung\Models\User::class, 'userId');
     }
 }

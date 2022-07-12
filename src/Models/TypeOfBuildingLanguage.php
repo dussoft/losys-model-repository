@@ -2,16 +2,17 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 /**
  * Class TypeOfBuildingLanguage
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 4:07 pm UTC
  *
- * @property \App\Models\TypeOfBuilding $typeofbuildingid
- * @property \App\Models\Language $languageid
+ * @property \Referenzverwaltung\Models\TypeOfBuilding $typeofbuildingid
+ * @property \Referenzverwaltung\Models\Language $languageid
  * @property \Illuminate\Database\Eloquent\Collection $typeOfBuildingLanguages
  * @property \Illuminate\Database\Eloquent\Collection $typeOfBuildingLanguage1s
  * @property integer $typeOfBuildingId
@@ -91,22 +92,21 @@ class TypeOfBuildingLanguage extends Model
     {
        
         $typeOfBuildingLang = DB::table('type_of_building_languages')
-        ->join('type_of_buildings', 'type_of_buildings.id', '=', 'type_of_building_languages.typeOfBuildingId')
-        ->join('languages', 'languages.id', '=', 'type_of_building_languages.languageId')
-        ->where('type_of_building_languages.typeOfBuildingId', '=', $typeOfBuildingId)
-        ->where('languages.shortName', $lang)
-        ->orderBy('languages.isDefault', 'DESC')
-        ->first();
+            ->join('type_of_buildings', 'type_of_buildings.id', '=', 'type_of_building_languages.typeOfBuildingId')
+            ->join('languages', 'languages.id', '=', 'type_of_building_languages.languageId')
+            ->where('type_of_building_languages.typeOfBuildingId', '=', $typeOfBuildingId)
+            ->where('languages.shortName', $lang)
+            ->orderBy('languages.isDefault', 'DESC')
+            ->first();
 
         if(!$typeOfBuildingLang){
-         
-        $typeOfBuildingLang =  DB::table('type_of_building_languages')
-        ->join('type_of_buildings', 'type_of_buildings.id', '=', 'type_of_building_languages.typeOfBuildingId')
-        ->join('languages', 'languages.id', '=', 'type_of_building_languages.languageId')
-        ->where('type_of_building_languages.typeOfBuildingId', '=', $typeOfBuildingId)
-      
-        ->orderBy('languages.isDefault', 'DESC')
-        ->first();
+            $typeOfBuildingLang =  DB::table('type_of_building_languages')
+                ->join('type_of_buildings', 'type_of_buildings.id', '=', 'type_of_building_languages.typeOfBuildingId')
+                ->join('languages', 'languages.id', '=', 'type_of_building_languages.languageId')
+                ->where('type_of_building_languages.typeOfBuildingId', '=', $typeOfBuildingId)
+
+                ->orderBy('languages.isDefault', 'DESC')
+                ->first();
         }
 
         return $typeOfBuildingLang;

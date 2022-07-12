@@ -2,17 +2,17 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class TypeOfConstructionLanguage
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 4:23 pm UTC
  *
- * @property \App\Models\Language $language
- * @property \App\Models\TypeOfConstruction $typeofconstration
+ * @property \Referenzverwaltung\Models\Language $language
+ * @property \Referenzverwaltung\Models\TypeOfConstruction $typeofconstration
  * @property string $title
  * @property integer $typeOfConstrationId
  * @property integer $languageId

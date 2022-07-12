@@ -2,12 +2,12 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 
 
 /**
  * Class MigrateOldData
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version April 27, 2021, 7:50 am UTC
  *
  * @property string $file_name

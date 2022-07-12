@@ -191,7 +191,7 @@ abstract class BaseRepository
         return $model->delete();
     }
 
-    public function escape_like(string $value, string $char = '\\'): string
+    public static function escape_like(string $value, string $char = '\\'): string
     {
         return str_replace(
             [$char, '%', '_'],

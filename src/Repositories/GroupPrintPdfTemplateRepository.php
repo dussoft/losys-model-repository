@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\GroupPrintPdfTemplate;
 
 /**
  * Class PrintPdfTemplateRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version July 26, 2021, 1:40 pm UTC
 */
 

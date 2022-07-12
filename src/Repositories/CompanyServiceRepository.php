@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\CompanyService;
 
 /**
  * Class CompanyServiceRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version January 7, 2021, 10:50 am UTC
 */
 

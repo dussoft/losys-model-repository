@@ -2,7 +2,6 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\TypeOfWork;
 use Referenzverwaltung\Models\DefaultTypeOfWork;
 use Referenzverwaltung\Models\TypeOfWorkLanguage;
@@ -10,7 +9,7 @@ use Referenzverwaltung\Models\DefaultTypeOfWorkLanguage;
 
 /**
  * Class TypeOfWorkRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 3:49 pm UTC
 */
 
@@ -110,7 +109,8 @@ class TypeOfWorkRepository extends BaseRepository
         $query =  TypeOfWork::where('companyId', $companyId)->orderBy('updated_at','desc');
         if (isset($textSearch)) {
             $search = $textSearch;
-            $typeOfWorkLanguageId = TypeOfWorkLanguage::where('title','LIKE', "%". $this->escape_like($search) ."%")->orderBy('title','ASC')->pluck('typeOfWorkId');
+            $typeOfWorkLanguageId = TypeOfWorkLanguage::where('title','LIKE', "%" . BaseRepository::escape_like($search)
+                                                                              . "%")->orderBy('title', 'ASC')->pluck('typeOfWorkId');
             $query =  $query->whereIn('id', $typeOfWorkLanguageId);
         }
         if ($isSearch) {

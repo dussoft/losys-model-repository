@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\DefaultTypeOfConstruction;
 
 /**
  * Class DefaultTypeOfConstructionRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version February 17, 2021, 10:34 am UTC
 */
 

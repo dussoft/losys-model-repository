@@ -2,15 +2,15 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class GroupService
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 3:13 pm UTC
  *
- * @property \App\Models\Service $serviceid
- * @property \App\Models\Group $groupid
+ * @property \Referenzverwaltung\Models\Service $serviceid
+ * @property \Referenzverwaltung\Models\Group $groupid
  * @property integer $gqw 
  * 3456890-=oupId
  * @property integer $serviceId
@@ -55,7 +55,7 @@ class GroupService extends Model
      **/
     public function service()
     {
-        return $this->belongsTo(\App\Models\Service::class, 'serviceId');
+        return $this->belongsTo(Service::class, 'serviceId');
     }
 
     /**
@@ -63,7 +63,7 @@ class GroupService extends Model
      **/
     public function group()
     {
-        return $this->belongsTo(\App\Models\Group::class, 'groupId');
+        return $this->belongsTo(Group::class, 'groupId');
     }
 
     

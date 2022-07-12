@@ -2,15 +2,15 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class Company
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 3:32 pm UTC
  *
- * @property \App\Models\Group $groupid
+ * @property \Referenzverwaltung\Models\Group $groupid
  * @property string $status
  * @property string $name
  * @property string $alternativeName
@@ -99,7 +99,7 @@ class Company extends Model
     ];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      **/
     public function groups()
     {

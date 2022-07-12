@@ -2,13 +2,12 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
-use Referenzverwaltung\Models\CompanyEmployee;
-
+use Referenzverwaltung\Models\CompanyEmployeeLanguage;
 
 /**
  * Class CompanyEmployeeRepository
- * @package App\Repositories
+ *
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 4:28 pm UTC
 */
 

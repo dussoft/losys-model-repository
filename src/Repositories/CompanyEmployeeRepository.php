@@ -2,13 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\CompanyEmployee;
-
 
 /**
  * Class CompanyEmployeeRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 4:28 pm UTC
 */
 
@@ -52,7 +50,7 @@ class CompanyEmployeeRepository extends BaseRepository
     }
 
     public function getByEmail($email){
-        return CompanyEmployee::where('email',$employee['email'])->first();
+        return CompanyEmployee::where('email',$email)->first();
     }
 
     public function getByCompany($companyId){

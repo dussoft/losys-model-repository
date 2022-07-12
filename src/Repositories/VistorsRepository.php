@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\Vistors;
 
 /**
  * Class VistorsRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version June 12, 2020, 10:20 pm UTC
 */
 

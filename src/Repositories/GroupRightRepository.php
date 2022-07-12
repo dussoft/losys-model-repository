@@ -2,12 +2,11 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Repositories\BaseRepository;
 use Referenzverwaltung\Models\GroupRight;
 
 /**
  * Class GroupCompanyRepository
- * @package App\Repositories
+ * @package Referenzverwaltung\Repositories
  * @version January 6, 2021, 9:22 am UTC
 */
 

@@ -2,14 +2,14 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * Class TypeOfBuilding
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 19, 2020, 3:59 pm UTC
  *
- * @property \App\Models\Company $companyid
+ * @property \Referenzverwaltung\Models\Company $companyid
  * @property integer $companyId
  */
 class TypeOfBuilding extends Model

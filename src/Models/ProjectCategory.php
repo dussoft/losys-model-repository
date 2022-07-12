@@ -2,13 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * Class ProjectCategory
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version December 1, 2021, 1:23 pm UTC
  *
  * @property integer $projectId

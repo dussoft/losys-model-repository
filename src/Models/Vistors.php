@@ -1,11 +1,11 @@
 <?php
 
 namespace Referenzverwaltung\Models;
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class Vistors
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version June 12, 2020, 10:20 pm UTC
  *
  * @property string $ip_address

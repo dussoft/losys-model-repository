@@ -2,13 +2,13 @@
 
 namespace Referenzverwaltung\Models;
 
-use Illuminate\Database\Eloquent as Model;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 
 /**
  * Class IframeTemplate
- * @package App\Models
+ * @package Referenzverwaltung\Models
  * @version August 1, 2021, 10:25 am UTC
  *
  * @property string $title
