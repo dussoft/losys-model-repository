@@ -52,6 +52,6 @@ class GroupCompanyRepository extends BaseRepository
     }
 
     public function getCompaniesFromGroupIds($groupIds){
-        GroupCompany::where('groupId',$groupIds)->groupBy('companyId')->pluck('companyId');
+        return GroupCompany::where('groupId',$groupIds)->groupBy('companyId')->pluck('companyId');
     }
 }

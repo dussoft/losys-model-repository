@@ -50,14 +50,12 @@ class TypeOfWorkLanguageRepository extends BaseRepository
 
     public function getLanguagesByTypeId($id){
         return DB::table('type_of_work_langauages')
-        ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
-        ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
-        ->where('type_of_work_langauages.typeOfWorkId', '=', $id)
-        ->orderBy('languages.isDefault', 'DESC')
-        ->groupBy(['type_of_work_langauages.id']);
+            ->join('type_of_works', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
+            ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
+            ->where('type_of_work_langauages.typeOfWorkId', '=', $id)
+            ->orderBy('languages.isDefault', 'DESC')
+            ->groupBy(['type_of_work_langauages.id']);
     }
-
-    
 
     public function getByLangAndType($langId, $typeId){
         return TypeOfWorkLanguage::where('languageId',$langId)->where('typeOfWorkId', $typeId)->first();
@@ -83,9 +81,7 @@ class TypeOfWorkLanguageRepository extends BaseRepository
     }
 
     public function getTypeOfWorkIdFromIdsAndSearch($ComptypeOfWorkIds, $search){
-        TypeOfWorkLanguage::whereIn('typeOfWorkId',$ComptypeOfWorkIds)->where('title', 'like', "%" . BaseRepository::escape_like(
-                                                                                         $search) . "%")->pluck('typeOfWorkId');
+        return TypeOfWorkLanguage::whereIn('typeOfWorkId',$ComptypeOfWorkIds)->where('title', 'like', "%" . BaseRepository::escape_like(             $search) . "%")->pluck('typeOfWorkId');
     }
-    
 }
 

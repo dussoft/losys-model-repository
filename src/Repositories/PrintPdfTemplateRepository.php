@@ -43,18 +43,18 @@ class PrintPdfTemplateRepository extends BaseRepository
 
     public function getByCompanyandType($companyId, $type, $default){
         return PrintPdfTemplate::where('companyId', $companyId)
-        ->where('type',$type)
-        ->where('isDefault',$default)->first();
+            ->where('type',$type)
+            ->where('isDefault',$default)->first();
     }
 
     public function getAllByCompanyandType($companyId, $type, $default){
         return PrintPdfTemplate::where('companyId', $companyId)
-        ->where('type',$type)
-        ->where('isDefault',$default)->get();
+            ->where('type',$type)
+            ->where('isDefault',$default)->get();
     }
 
     public function getByCompanyandLayout($companyId, $printlayout){
-        PrintPdfTemplate::where('companyId', $companyId)
+        return PrintPdfTemplate::where('companyId', $companyId)
             ->where('type',$printlayout)
             ->first();
     }
@@ -62,5 +62,4 @@ class PrintPdfTemplateRepository extends BaseRepository
     public function getByCompanyId($companyId){
         return PrintPdfTemplate::where('companyId', $companyId)->all();
     }
-    
 }

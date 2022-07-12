@@ -43,11 +43,11 @@ class DefaultTypeOfWorkLanguageRepository extends BaseRepository
 
     public function getLanguagesByTypeId($id){
         return DB::table('default_type_of_work_langauages')
-        ->join('default_type_of_works', 'default_type_of_works.id', '=', 'default_type_of_work_langauages.typeOfWorkId')
-        ->join('languages', 'languages.id', '=', 'default_type_of_work_langauages.languageId')
-        ->where('default_type_of_work_langauages.typeOfWorkId', '=', $id)
-        ->orderBy('languages.isDefault', 'DESC')
-        ->groupBy(['default_type_of_work_langauages.id']);
+            ->join('default_type_of_works', 'default_type_of_works.id', '=', 'default_type_of_work_langauages.typeOfWorkId')
+            ->join('languages', 'languages.id', '=', 'default_type_of_work_langauages.languageId')
+            ->where('default_type_of_work_langauages.typeOfWorkId', '=', $id)
+            ->orderBy('languages.isDefault', 'DESC')
+            ->groupBy(['default_type_of_work_langauages.id']);
     }
 
     public function getByLanguageId($id){

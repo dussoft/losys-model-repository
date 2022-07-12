@@ -68,13 +68,13 @@ class TypeOfWorkRepository extends BaseRepository
     }
 
     public function participatingCompanyWorkList($projectParticipatingCompanyTypeOfWorkId, $companyId, $lang){
-        $typeOfWorks  = TypeOfWork::join('type_of_work_langauages', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
-        ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
-        ->where('type_of_works.companyId', $companyId)
-        ->where('languages.shortName', $lang)
-        ->whereNotIn('type_of_works.id',$projectParticipatingCompanyTypeOfWorkId)
-        ->orderBy('type_of_work_langauages.title')
-            ->get(['type_of_works.*']);
+        return TypeOfWork::join('type_of_work_langauages', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
+            ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
+            ->where('type_of_works.companyId', $companyId)
+            ->where('languages.shortName', $lang)
+            ->whereNotIn('type_of_works.id',$projectParticipatingCompanyTypeOfWorkId)
+            ->orderBy('type_of_work_langauages.title')
+                ->get(['type_of_works.*']);
     }
 
     public function getByCompanyExcludeIdsPaginateOrder($companyId, $ids, $order="desc", $paginate=10){
@@ -85,24 +85,24 @@ class TypeOfWorkRepository extends BaseRepository
 
     public function getByCompanyExcludeIdsOrder($companyId, $ids, $order="desc"){
         return TypeOfWork::where('companyId',$companyId)
-        ->whereNotIn('id',$ids)
-        ->orderBy('updated_at',$order)->get();
+            ->whereNotIn('id',$ids)
+            ->orderBy('updated_at',$order)->get();
     }
 
     public function getByCompanyIncludeIdsPaginateOrder($companyId, $ids, $order="desc", $paginate=10){
         return TypeOfWork::where('companyId', $companyId)
-        ->where('id', 'in', $ids)->orderBy('updated_at',$order)->paginate($paginate);
+            ->where('id', 'in', $ids)->orderBy('updated_at',$order)->paginate($paginate);
     }
 
     
 
     public function getByCompanyAndLang($companyId, $lang){
         return TypeOfWork::join('type_of_work_langauages', 'type_of_works.id', '=', 'type_of_work_langauages.typeOfWorkId')
-        ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
-        ->where('type_of_works.companyId', $companyId)
-        ->where('languages.shortName', $lang)
-       ->orderBy('type_of_work_langauages.title')
-        ->get(['type_of_works.*']);
+            ->join('languages', 'languages.id', '=', 'type_of_work_langauages.languageId')
+            ->where('type_of_works.companyId', $companyId)
+            ->where('languages.shortName', $lang)
+           ->orderBy('type_of_work_langauages.title')
+            ->get(['type_of_works.*']);
     }
 
     public function searchFromLanguage($companyId, $textSearch, $isSearch=false ){

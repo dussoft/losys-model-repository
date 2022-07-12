@@ -94,6 +94,6 @@ class CompanyRepository extends BaseRepository
     }
 
     public function getByGroup($groupId){
-        Company::where('groupId',$groupId)->get();
+        return Company::where('groupId',$groupId)->get();
     }
 }
