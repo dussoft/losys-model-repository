@@ -55,8 +55,6 @@ use Referenzverwaltung\Repositories\TypeOfWorkLanguageRepository;
 use Referenzverwaltung\Repositories\TypeOfWorkRepository;
 use Referenzverwaltung\Repositories\VisitorsRepository;
 
-
-
 class LosysRepositoryServiceProvider extends ServiceProvider
 {
     /**

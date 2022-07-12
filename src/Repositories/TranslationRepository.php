@@ -5,12 +5,12 @@ namespace Referenzverwaltung\Repositories;
 use Referenzverwaltung\Models\Transalation;
 
 /**
- * Class TransalationRepository
+ * Class TranslationRepository
  * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 2:33 pm UTC
 */
 
-class TransalationRepository extends BaseRepository
+class TranslationRepository extends BaseRepository
 {
     /**
      * @var array

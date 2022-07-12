@@ -5,12 +5,12 @@ namespace Referenzverwaltung\Repositories;
 use Referenzverwaltung\Models\Vistors;
 
 /**
- * Class VistorsRepository
+ * Class VisitorsRepository
  * @package Referenzverwaltung\Repositories
  * @version June 12, 2020, 10:20 pm UTC
 */
 
-class VistorsRepository extends BaseRepository
+class VisitorsRepository extends BaseRepository
 {
     /**
      * @var array

@@ -2,15 +2,15 @@
 
 namespace Referenzverwaltung\Repositories;
 
-use Referenzverwaltung\Models\ProjectTypeOfContruction;
+use Referenzverwaltung\Models\ProjectTypeOfConstruction;
 
 /**
- * Class ProjectTypeOfContructionRepository
+ * Class ProjectTypeOfConstructionRepository
  * @package Referenzverwaltung\Repositories
  * @version February 18, 2021, 8:17 am UTC
 */
 
-class ProjectTypeOfContructionRepository extends BaseRepository
+class ProjectTypeOfConstructionRepository extends BaseRepository
 {
     /**
      * @var array
@@ -35,19 +35,19 @@ class ProjectTypeOfContructionRepository extends BaseRepository
      **/
     public function model()
     {
-        return ProjectTypeOfContruction::class;
+        return ProjectTypeOfConstruction::class;
     }
 
     public function migrateProjectTypeOfConstruction($data){
-        return ProjectTypeOfContruction::migrateProjectTypeOfConstruction($data);
+        return ProjectTypeOfConstruction::migrateProjectTypeOfConstruction($data);
     }
 
     public function getByProjectId($projectId){
-        return ProjectTypeOfContruction::where("projectId", $projectId)->get();
+        return ProjectTypeOfConstruction::where("projectId", $projectId)->get();
     }
 
     public function replicate($id, $cloneProjectId){
-        $projectTypeOfContruction=ProjectTypeOfContruction::where("id", $id);
+        $projectTypeOfContruction=ProjectTypeOfConstruction::where("id", $id);
         $cloneProjectTypeOfContruction = $projectTypeOfContruction->replicate();
         $cloneProjectTypeOfContruction->projectId = $cloneProjectId;
         $cloneProjectTypeOfContruction->save();
@@ -55,10 +55,10 @@ class ProjectTypeOfContructionRepository extends BaseRepository
     }
 
     public function getConstructionIdsByProject($projectId){
-        return ProjectTypeOfContruction::where('projectId', $projectId)->pluck('typeOfContructionId');
+        return ProjectTypeOfConstruction::where('projectId', $projectId)->pluck('typeOfContructionId');
     }
 
     public function getProjectIdsByConstructions($constructionIds){
-        return ProjectTypeOfContruction::whereIn('typeOfContructionId', $constructionIds)->pluck('projectId');
+        return ProjectTypeOfConstruction::whereIn('typeOfContructionId', $constructionIds)->pluck('projectId');
     }
 }

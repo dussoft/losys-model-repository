@@ -4,7 +4,7 @@ namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Models\GroupMember;
 
-class GroupRepository extends BaseRepository
+class GroupMemberRepository extends BaseRepository
 {
     /**
      * @var array
