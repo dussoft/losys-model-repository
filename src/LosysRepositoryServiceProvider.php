@@ -22,7 +22,6 @@ use Referenzverwaltung\Repositories\DefaultTypeOfConstructionRepository;
 use Referenzverwaltung\Repositories\DefaultTypeOfWorkLanguageRepository;
 use Referenzverwaltung\Repositories\DefaultTypeOfWorkRepository;
 use Referenzverwaltung\Repositories\GroupCompanyRepository;
-use Referenzverwaltung\Repositories\GroupMemberRepository;
 use Referenzverwaltung\Repositories\GroupPrintPdfTemplateRepository;
 use Referenzverwaltung\Repositories\GroupRepository;
 use Referenzverwaltung\Repositories\GroupRightRepository;
@@ -93,7 +92,6 @@ class LosysRepositoryServiceProvider extends ServiceProvider
         $this->app->bind(DefaultTypeOfWorkLanguageRepository::class);
         $this->app->bind(DefaultTypeOfWorkRepository::class);
         $this->app->bind(GroupCompanyRepository::class);
-        $this->app->bind(GroupMemberRepository::class);
         $this->app->bind(GroupPrintPdfTemplateRepository::class);
         $this->app->bind(GroupRepository::class);
         $this->app->bind(GroupRightRepository::class);
