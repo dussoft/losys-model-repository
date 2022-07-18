@@ -3,6 +3,8 @@
 namespace Referenzverwaltung\Repositories;
 
 use Referenzverwaltung\Models\Address;
+use Referenzverwaltung\Models\Project;
+use Referenzverwaltung\Models\ProjectParticipatingCompany;
 
 /**
  * Class AddressRepository
