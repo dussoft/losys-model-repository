@@ -56,6 +56,10 @@ class CategoryLanguageRepository extends BaseRepository
         return CategoryLanguage::where('languageId',$lang)->get();
     }
 
+    public function getByCategoryId($cat){
+        return CategoryLanguage::where('categoryId',$cat)->get();
+    }
+
     public function translate($id, $lang){
         return CategoryLanguage::translate($id, $lang);
     }
