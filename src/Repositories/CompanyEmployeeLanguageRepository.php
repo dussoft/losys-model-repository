@@ -48,26 +48,14 @@ class CompanyEmployeeLanguageRepository extends BaseRepository
         return CompanyEmployeeLanguage::where("languageId", $id)->get();
     }
 
-    public function create($languageId, $employeId, $function, $education, $skills){
-        return CompanyEmployeeLanguage::create([
-            'languageId'=>$languageId,
-            'employeId'=>$employeId,
-            'function'=>$function,
-            'education'=>$education,
-            'skills'=>$skills
-        ]);
+    public function create($input){
+        return CompanyEmployeeLanguage::create([$input]);
     }
 
-    public function update($languageId, $employeId, $function, $education, $skills){
-        $employeeLang=CompanyEmployeeLanguage::where('languageId',$languageId)->where('employeId',$employeId)->first();
+    public function update($input){
+        $employeeLang=CompanyEmployeeLanguage::where('languageId',$input->languageId)->where('employeId',$input->employeId)->first();
         if($employeeLang){
-            $employeeLang->update([
-                'languageId'=>$languageId,
-                'employeId'=>$employeId,
-                'function'=>$function,
-                'education'=>$education,
-                'skills'=> $skills
-            ]);
+            $employeeLang->update($input);
         }
         return $employeeLang;
     }
