@@ -48,7 +48,7 @@ class CompanyEmployeeLanguageRepository extends BaseRepository
         return CompanyEmployeeLanguage::where("languageId", $id)->get();
     }
 
-    public function create($input){
+    public function createnew($input){
         return CompanyEmployeeLanguage::create([$input]);
     }
 
