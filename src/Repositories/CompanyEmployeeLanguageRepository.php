@@ -49,6 +49,7 @@ class CompanyEmployeeLanguageRepository extends BaseRepository
     }
 
     public function createnew($input){
+        $input["id"]=0;
         return CompanyEmployeeLanguage::create([$input]);
     }
 
