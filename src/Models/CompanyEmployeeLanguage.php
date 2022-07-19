@@ -32,7 +32,6 @@ class CompanyEmployeeLanguage extends Model
 
 
     public $fillable = [
-        'id',
         'languageId',
         'employeId',
         'function',

@@ -57,4 +57,7 @@ class CompanyContactPersonRepository extends BaseRepository
     public function getByCompanyId($companyId){
         return CompanyContactPerson::where('companyId', $companyId)->first();
     }
+    public function getByEmail($email){
+        return CompanyContactPerson::where('email', $email)->first();
+    }
 }
