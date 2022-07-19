@@ -53,4 +53,8 @@ class CompanyContactPersonRepository extends BaseRepository
         ->orderBy('languages.isDefault', 'DESC')
         ->groupBy(['employee_langauages.id']);
     }
+
+    public function getByCompanyId($companyId){
+        return CompanyContactPerson::where('companyId', $companyId)->first();
+    }
 }
