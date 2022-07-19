@@ -52,7 +52,7 @@ class CompanyEmployeeLanguageRepository extends BaseRepository
         return CompanyEmployeeLanguage::create([$input]);
     }
 
-    public function update($input){
+    public function updateChange($input){
         $employeeLang=CompanyEmployeeLanguage::where('languageId',$input->languageId)->where('employeId',$input->employeId)->first();
         if($employeeLang){
             $employeeLang->update($input);
