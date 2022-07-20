@@ -154,6 +154,13 @@ abstract class BaseRepository
         return $query->find($id, $columns);
     }
 
+    public function findOrFail($id, $columns = ['*'])
+    {
+        $query = $this->model->newQuery();
+
+        return $query->findOrFail($id, $columns);
+    }
+
     /**
      * Update model record for given id
      *
