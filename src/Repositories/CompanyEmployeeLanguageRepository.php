@@ -48,11 +48,14 @@ class CompanyEmployeeLanguageRepository extends BaseRepository
         return CompanyEmployeeLanguage::where("languageId", $id)->get();
     }
 
-    public function updateChange($input){
-        $employeeLang=CompanyEmployeeLanguage::where('languageId',$input["languageId"])->where('employeId',$input["employeId"])->first();
-        if($employeeLang){
-            $employeeLang->update($input);
-        }
-        return $employeeLang;
+    public function updateChange($languageId, $employeId, $function="", $education="", $skills=""){
+        $employeeLang=CompanyEmployeeLanguage::where('languageId',$languageId)->where('employeId',$employeId)->update(
+            [
+                'function'=> $function,
+                'education'=> $education,
+                'skills'=> $skills
+            ]
+        );
+        return true;
     }
 }
