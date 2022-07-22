@@ -53,6 +53,7 @@ use Referenzverwaltung\Repositories\TypeOfConstructionRepository;
 use Referenzverwaltung\Repositories\TypeOfWorkLanguageRepository;
 use Referenzverwaltung\Repositories\TypeOfWorkRepository;
 use Referenzverwaltung\Repositories\VisitorsRepository;
+use Referenzverwaltung\Repositories\UserRepository;
 
 class LosysRepositoryServiceProvider extends ServiceProvider
 {
@@ -123,5 +124,6 @@ class LosysRepositoryServiceProvider extends ServiceProvider
         $this->app->bind(TypeOfWorkLanguageRepository::class);
         $this->app->bind(TypeOfWorkRepository::class);
         $this->app->bind(VisitorsRepository::class);
+        $this->app->bind(UserRepository::class);
     }
 }

@@ -5,12 +5,12 @@ namespace Referenzverwaltung\Repositories;
 use Referenzverwaltung\Models\User;
 
 /**
- * Class TypeOfWorkRepository
+ * Class UserRepository
  * @package Referenzverwaltung\Repositories
  * @version December 19, 2020, 3:49 pm UTC
 */
 
-class TypeOfWorkRepository extends BaseRepository
+class UserRepository extends BaseRepository
 {
     /**
      * @var array
