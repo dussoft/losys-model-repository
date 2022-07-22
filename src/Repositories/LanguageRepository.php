@@ -43,7 +43,7 @@ class LanguageRepository extends BaseRepository
         return Language::updateOrCreate($condition, $data);
     }
 
-    public function getDefaults(){
+    public function getDefault(){
         return Language::where('isDefault', 1)->get();
     }
 
